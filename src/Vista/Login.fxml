@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: white;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.LoginControlador">
+   <children>
+      <Pane layoutY="-1.0" prefHeight="452.0" prefWidth="400.0" style="-fx-background-color: FFA676;">
+         <children>
+            <Label layoutX="143.0" layoutY="24.0" prefHeight="40.0" prefWidth="115.0" style="-fx-text-fill: black;" text="LOGIN" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri Bold" size="40.0" />
+               </font>
+            </Label>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="37.0" layoutX="59.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="311.0" />
+            <Label layoutX="63.0" layoutY="101.0" styleClass="tipoLetra" text="Usuario" />
+            <TextField layoutX="144.0" layoutY="96.0" prefHeight="25.0" prefWidth="217.0" promptText="Ingresa tu usuario" styleClass="prompt-text" stylesheets="@estilos.css" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="37.0" layoutX="59.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" width="311.0" />
+            <Label layoutX="63.0" layoutY="154.0" prefHeight="16.0" prefWidth="77.0" styleClass="tipoLetra" text="Contraseña" />
+            <PasswordField layoutX="141.0" layoutY="149.0" prefHeight="25.0" prefWidth="217.0" promptText="Ingresa tu contraseña" />
+            <Label layoutX="249.0" layoutY="189.0" text="Olvidé mi contraseña">
+               <styleClass>
+                  <String fx:value="tipoLetra" />
+                  <String fx:value="vinculos" />
+               </styleClass></Label>
+            <Button layoutX="112.0" layoutY="226.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="176.0" styleClass="botonIniciar" text="Iniciar sesión" textFill="WHITE">
+               <font>
+                  <Font name="Calibri" size="20.0" />
+               </font>
+            </Button>
+            <Label layoutX="97.0" layoutY="323.0" prefHeight="46.0" prefWidth="206.0" style="-fx-text-fill: black;" text="PROXIMAMENTE" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri Bold" size="29.0" />
+               </font>
+            </Label>
+            <Label layoutX="85.0" layoutY="285.0" styleClass="tipoLetra" text="¿Aún no haces parte de la familia? " />
+            <Label layoutX="172.0" layoutY="307.0" onMouseClicked="#openRegister" text="Regístrate" textAlignment="JUSTIFY">
+               <styleClass>
+                  <String fx:value="tipoLetra" />
+                  <String fx:value="vinculos" />
+               </styleClass></Label>
+            <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="81.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/facebook%20logo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="179.0" layoutY="376.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/google%20logo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="56.0" fitWidth="60.0" layoutX="278.0" layoutY="370.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/apple%20logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <ImageView fitHeight="301.0" fitWidth="331.0" layoutX="434.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Imagenes/LOGO%20FONDO%20BLANCO%20SANTISHOP.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="772.0" layoutY="-5.0" onMouseClicked="#BotonCerrar" prefHeight="35.0" prefWidth="30.0" styleClass="botonCerrar" text="X">
+         <font>
+            <Font name="Calibri Bold" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,42 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 21/04/2025, 9:20:57 p. m.
+    Author     : santi
+*/
+
+.vinculos{
+    -fx-text-fill: blue;
+    -fx-cursor: hand;
+}
+.vinculos:hover{
+    -fx-text-fill: #070287;
+}
+.tipoLetra{
+    -fx-font-family: verdana;
+    -fx-font-size: 13px;
+}
+.botonIniciar{
+    -fx-background-color: black;
+    -fx-font-size: 22px;
+    -fx-font-family: calibri;
+    -fx-cursor: hand;
+}
+
+.botonIniciar:hover{
+    -fx-background-color: #2a2a2a;
+}
+
+.botonIniciar:preset{
+    -fx-background-color: #aca7a7;
+}
+
+.botonCerrar{
+    -fx-background-color: red;
+    -fx-cursor: hand;
+}
+.botonCerrar:hover{
+    -fx-background-color: #f84d4d;
+}
