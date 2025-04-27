@@ -14,7 +14,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="450.0" prefWidth="800.0" style="-fx-background-color: white;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.LoginControlador">
    <children>
-      <Pane layoutY="-1.0" prefHeight="452.0" prefWidth="400.0" style="-fx-background-color: FFA676;">
+      <Pane layoutY="-1.0" prefHeight="452.0" prefWidth="400.0" style="-fx-background-color: F4FF76;">
          <children>
             <Label layoutX="143.0" layoutY="24.0" prefHeight="40.0" prefWidth="115.0" style="-fx-text-fill: black;" text="LOGIN" textAlignment="CENTER">
                <font>
@@ -23,10 +23,10 @@
             </Label>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="37.0" layoutX="59.0" layoutY="91.0" stroke="BLACK" strokeType="INSIDE" width="311.0" />
             <Label layoutX="63.0" layoutY="101.0" styleClass="tipoLetra" text="Usuario" />
-            <TextField layoutX="144.0" layoutY="96.0" prefHeight="25.0" prefWidth="217.0" promptText="Ingresa tu usuario" styleClass="prompt-text" stylesheets="@estilos.css" />
+            <TextField layoutX="144.0" layoutY="96.0" prefHeight="25.0" prefWidth="217.0" promptText="Ingresa tu usuario" styleClass="tipoLetra" stylesheets="@estilos.css" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="37.0" layoutX="59.0" layoutY="144.0" stroke="BLACK" strokeType="INSIDE" width="311.0" />
             <Label layoutX="63.0" layoutY="154.0" prefHeight="16.0" prefWidth="77.0" styleClass="tipoLetra" text="Contraseña" />
-            <PasswordField layoutX="141.0" layoutY="149.0" prefHeight="25.0" prefWidth="217.0" promptText="Ingresa tu contraseña" />
+            <PasswordField layoutX="141.0" layoutY="149.0" prefHeight="25.0" prefWidth="217.0" promptText="Ingresa tu contraseña" styleClass="tipoLetra" />
             <Label layoutX="249.0" layoutY="189.0" text="Olvidé mi contraseña">
                <styleClass>
                   <String fx:value="tipoLetra" />
@@ -43,7 +43,7 @@
                </font>
             </Label>
             <Label layoutX="85.0" layoutY="285.0" styleClass="tipoLetra" text="¿Aún no haces parte de la familia? " />
-            <Label layoutX="172.0" layoutY="307.0" onMouseClicked="#openRegister" text="Regístrate" textAlignment="JUSTIFY">
+            <Label layoutX="168.0" layoutY="307.0" onMouseClicked="#openRegister" prefHeight="16.0" prefWidth="93.0" text="REGISTRATE" textAlignment="JUSTIFY">
                <styleClass>
                   <String fx:value="tipoLetra" />
                   <String fx:value="vinculos" />
@@ -70,10 +70,5 @@
             <Image url="@Imagenes/LOGO%20FONDO%20BLANCO%20SANTISHOP.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="772.0" layoutY="-5.0" onMouseClicked="#BotonCerrar" prefHeight="35.0" prefWidth="30.0" styleClass="botonCerrar" text="X">
-         <font>
-            <Font name="Calibri Bold" size="32.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>

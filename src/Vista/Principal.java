@@ -21,8 +21,6 @@ import javafx.stage.StageStyle;
  */
 public class Principal extends Application{
 
-    private double xMov= 0;
-    private double yMov= 0;
     @Override
     public void start(Stage primaryStage){
         Parent root = null;
@@ -36,18 +34,8 @@ public class Principal extends Application{
         Scene escena = new Scene(root);
         primaryStage.setScene(escena);
         primaryStage.setTitle("SantiShop - Registro");
-        primaryStage.initStyle(StageStyle.UNDECORATED);
+        primaryStage.setResizable(false);
         primaryStage.show();
-        
-        root.setOnMousePressed((MouseEvent event) -> {
-            xMov = event.getSceneX();
-            yMov = event.getSceneY();
-        });
-        
-        root.setOnMouseDragged((MouseEvent event) -> {
-            primaryStage.setX(event.getScreenX()- xMov);
-            primaryStage.setY(event.getScreenY()- yMov);
-        });
     }
     public static void main(String[] args) {
         // TODO code application logic here

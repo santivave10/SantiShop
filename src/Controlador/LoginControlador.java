@@ -29,30 +29,25 @@ public class LoginControlador implements Initializable{
     
     }
     
-    @FXML
-    private void BotonCerrar(MouseEvent event){
-        System.exit(0);
-    }
     
     @FXML
     private void openRegister(MouseEvent event){
-         try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Register.fxml"));
-        Parent root = loader.load();
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Register.fxml"));
+            Parent root = loader.load();
 
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setTitle("SantiShop - Registro");
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.centerOnScreen();
-        stage.show();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("SantiShop - Registro");
+            stage.setResizable(false);
+            stage.centerOnScreen();
+            stage.show();
 
-        // Cerrar la ventana de login actual
-        ((Stage)(((Label)event.getSource()).getScene().getWindow())).close();
-        
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
+            ((Stage)(((Label)event.getSource()).getScene().getWindow())).close();
+
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
       
 }
