@@ -32,7 +32,7 @@
                   <String fx:value="tipoLetra" />
                   <String fx:value="vinculos" />
                </styleClass></Label>
-            <Button layoutX="112.0" layoutY="226.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="176.0" styleClass="botonIniciar" text="Iniciar sesión" textFill="WHITE">
+            <Button layoutX="112.0" layoutY="226.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="176.0" styleClass="botonRegistrarIniciar" text="Iniciar sesión" textFill="WHITE">
                <font>
                   <Font name="Calibri" size="20.0" />
                </font>

@@ -8,6 +8,14 @@ package Modelo;
  *
  * @author santi
  */
-public class nodo {
+    public class nodo<T>{
     
+    public T dato;
+    public nodo <T> sig;
+
+    public nodo(T dato) {
+        this.dato = dato;
+        sig = null;
+    }
+
 }

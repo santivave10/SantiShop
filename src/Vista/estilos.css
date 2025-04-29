@@ -18,18 +18,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-font-family: verdana;
     -fx-font-size: 13px;
 }
-.botonIniciar{
+.botonRegistrarIniciar{
     -fx-background-color: black;
     -fx-font-size: 22px;
     -fx-font-family: calibri;
     -fx-cursor: hand;
 }
 
-.botonIniciar:hover{
+.botonRegistrarIniciar:hover{
     -fx-background-color: #2a2a2a;
 }
 
-.botonIniciar:preset{
+.botonRegistrarIniciar:preset{
     -fx-background-color: #aca7a7;
 }
 
