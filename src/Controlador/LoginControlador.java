@@ -7,6 +7,7 @@ package Controlador;
 import Modelo.Usuario;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -131,6 +133,55 @@ public class LoginControlador implements Initializable{
             pausa.play();
         }
     }
+    
+    @FXML
+    private void olvidarContrasena() {
+        // Solicitar nombre de usuario
+        TextInputDialog dialogoUsuario = new TextInputDialog();
+        dialogoUsuario.setTitle("Olvidé mi contraseña");
+        dialogoUsuario.setHeaderText(null);
+        dialogoUsuario.setContentText("Ingresa tu nombre de usuario:");
+
+        Optional<String> resultadoUsuario = dialogoUsuario.showAndWait();
+
+        if (resultadoUsuario.isPresent()) {
+            String usuarioIngresado = resultadoUsuario.get();
+
+            // Verificar si el usuario existe
+            boolean usuarioExiste = Controlador.RegisterControlador.listaUsuarios.existeUsuario(usuarioIngresado);
+
+            if (!usuarioExiste) {
+                Alert alerta = new Alert(Alert.AlertType.ERROR);
+                alerta.setTitle("Error");
+                alerta.setHeaderText(null);
+                alerta.setContentText("El usuario no existe.");
+                alerta.show();
+                return;
+            }
+
+            // Si existe, pedir nueva contraseña
+            TextInputDialog dialogoNuevaClave = new TextInputDialog();
+            dialogoNuevaClave.setTitle("Nueva contraseña");
+            dialogoNuevaClave.setHeaderText(null);
+            dialogoNuevaClave.setContentText("Ingresa tu nueva contraseña:");
+
+            Optional<String> resultadoClave = dialogoNuevaClave.showAndWait();
+
+            if (resultadoClave.isPresent()) {
+                String nuevaContrasena = resultadoClave.get();
+
+                // Actualizar contraseña
+                Controlador.RegisterControlador.listaUsuarios.actualizarContrasena(usuarioIngresado, nuevaContrasena);
+
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Contraseña actualizada");
+                alerta.setHeaderText(null);
+                alerta.setContentText("Tu contraseña ha sido actualizada exitosamente.");
+                alerta.show();
+            }
+        }
+    }
+
 
 
 }

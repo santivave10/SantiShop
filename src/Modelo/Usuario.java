@@ -29,11 +29,15 @@ public class Usuario {
     }
     
     public String getUsuario() { return Usuario; }
-    public String getContraseña() { return Contrasena; }
+    public String getContrasena() { return Contrasena; }
     public String getNombres() { return Nombre; }
     public String getApellidos() { return Apellido; }
     public String getSexo() { return Sexo; }
     public String getEdad() { return Edad; }
     public String getPais() { return Pais; }
+
+    public void setContraseña(String nuevaContrasena) {
+        this.Contrasena = nuevaContrasena;
+    }
 }
 

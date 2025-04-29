@@ -39,11 +39,11 @@ public class ListaUsuarios {
     }
     
       //Método para buscar un usuario por usuario y contraseña
-    public Usuario buscarUsuario(String usuario, String contraseña) {
+    public Usuario buscarUsuario(String usuario, String contrasena) {
         nodo<Usuario> actual = cabeza;
         
         while (actual != null) {
-            if (actual.dato.getUsuario().equalsIgnoreCase(usuario) && actual.dato.getContraseña().equals(contraseña)) {
+            if (actual.dato.getUsuario().equalsIgnoreCase(usuario) && actual.dato.getContrasena().equals(contrasena)) {
                 return actual.dato; // Usuario encontrado
             }
             actual = actual.sig;
@@ -66,5 +66,17 @@ public class ListaUsuarios {
         return false;
     }
      
-     
+    public void actualizarContrasena(String usuario, String nuevaContrasena) {
+        nodo<Usuario> actual = cabeza;
+
+        while (actual != null) {
+            if (actual.dato.getUsuario().equalsIgnoreCase(usuario)) {
+                actual.dato.setContraseña(nuevaContrasena);
+                break;
+            }
+            actual = actual.sig;
+        }
+    }
+
+   
 }
