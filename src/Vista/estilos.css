@@ -40,3 +40,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .botonCerrar:hover{
     -fx-background-color: #f84d4d;
 }
+
+.tipoLetraVinculosPagPrincipal{
+    -fx-font-family: verdana;
+    -fx-font-size: 20px;
+    -fx-underline: true;
+}
+
