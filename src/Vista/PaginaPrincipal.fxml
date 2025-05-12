@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
@@ -10,6 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
@@ -59,9 +62,10 @@
                   <Insets left="25.0" top="40.0" />
                </HBox.margin>
             </ImageView>
+            <Circle fill="#919191" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" layoutY="151.0" prefHeight="2000.0" prefWidth="1000.0" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" layoutY="151.0" prefHeight="403.0" prefWidth="1000.0" vbarPolicy="ALWAYS">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1697.0" prefWidth="1000.0">
                <children>
@@ -108,125 +112,37 @@
                         <Insets top="10.0" />
                      </padding>
                   </VBox>
-                  <VBox layoutX="203.0" layoutY="45.0" prefHeight="1601.0" prefWidth="768.0" style="-fx-background-color: #E7E7E7;">
+                  <ComboBox fx:id="comboFiltro" layoutX="775.0" layoutY="12.0" prefHeight="25.0" prefWidth="179.0" promptText="Ordenar por" styleClass="tipoLetra" />
+                  <VBox layoutX="200.0" layoutY="51.0" prefHeight="618.0" prefWidth="775.0" style="-fx-background-color: #d1d1d1;">
                      <children>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Imagenes/Productos/Producto1.png" />
                                  </image>
                               </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                              <Label layoutX="166.0" prefHeight="53.0" prefWidth="462.0" styleClass="LetraNombreProducto" text="Portatil asus 16GB RAM, 1TB almacenamiento, tarjeta grafica NVIDIA 4050RX" wrapText="true" />
+                              <Label layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$5.200.000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3.900.000" />
+                              <Label layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
+                              <Label layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="ASUS" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@Imagenes/Productos/Producto2.jpg" />
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
                                  </image>
                               </ImageView>
                            </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Imagenes/Productos/Producto3.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Imagenes/Productos/Producto4.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Imagenes/Productos/Producto5.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Imagenes/Productos/Producto6.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Imagenes/Productos/Producto7.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Imagenes/Productos/Producto8.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Imagenes/Productos/Producto9.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="150.0" prefWidth="768.0" style="-fx-background-color: white;">
-                           <VBox.margin>
-                              <Insets top="10.0" />
-                           </VBox.margin>
-                           <children>
-                              <ImageView fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@Imagenes/Productos/Producto10.jpg" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
+                        </Pane>
                      </children>
                   </VBox>
                </children>

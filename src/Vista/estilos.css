@@ -47,3 +47,65 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-underline: true;
 }
 
+.LetraNombreProducto{
+    -fx-font-family: verdana;
+    -fx-font-size: 17px;
+    -fx-text-fill: black;
+    -fx-font-weight: bold;
+}
+
+.LetraPrecioOriginal{
+    -fx-font-family: verdana;
+    -fx-font-size: 15px;
+    -fx-text-fill: #817e7e;
+}
+
+.LetraPrecioDescuento{
+    -fx-font-family: verdana;
+    -fx-font-size: 25px;
+    -fx-text-fill: black;
+}
+
+.LetraPorcentaje{
+    -fx-font-family: verdana;
+    -fx-font-size: 15px;
+    -fx-text-fill: red;
+}
+
+.LetraMarca{
+    -fx-font-family: verdana;
+    -fx-font-size: 15px;
+    -fx-text-fill: black;
+}
+
+.botonComprar{
+    -fx-background-color: #00a7ff;
+    -fx-font-size: 18px;
+    -fx-font-family: verdana;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.botonComprar:hover{
+    -fx-background-color: #036497;
+}
+
+.botonComprar:preset{
+    -fx-background-color: #033e5c;
+}
+
+.botonAddCarrito{
+    -fx-background-color: #daf2fe;
+    -fx-font-size: 18px;
+    -fx-font-family: verdana;
+    -fx-text-fill: #00a7ff;
+    -fx-cursor: hand;
+}
+
+.botonAddCarrito:hover{
+    -fx-background-color: #c5dce8;
+}
+
+.botonAddCarrito:preset{
+    -fx-background-color: #849299;
+}

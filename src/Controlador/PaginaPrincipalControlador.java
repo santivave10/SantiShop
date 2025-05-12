@@ -6,7 +6,9 @@ package Controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 
 /**
  * FXML Controller class
@@ -15,9 +17,12 @@ import javafx.fxml.Initializable;
  */
 public class PaginaPrincipalControlador implements Initializable {
 
+   @FXML 
+    private ComboBox<String> comboFiltro;
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        comboFiltro.getItems().addAll("Precio Mayor", "Precio Menor", "Descuento");
     }    
     
 }
