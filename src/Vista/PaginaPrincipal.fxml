@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #E7E7E7;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.PaginaPrincipalControlador">
+<AnchorPane id="AnchorPane" prefHeight="742.0" prefWidth="1000.0" style="-fx-background-color: #E7E7E7;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.PaginaPrincipalControlador">
    <children>
       <HBox prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #919191;">
          <children>
@@ -54,7 +54,7 @@
                   <Insets left="25.0" top="20.0" />
                </HBox.margin>
             </Line>
-            <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="80.0" fitWidth="92.0" onMouseClicked="#mostrarCarrito" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@Imagenes/carro%20compras.png" />
                </image>
@@ -62,12 +62,11 @@
                   <Insets left="25.0" top="40.0" />
                </HBox.margin>
             </ImageView>
-            <Circle fill="#919191" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
          </children>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" layoutY="151.0" prefHeight="403.0" prefWidth="1000.0" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" layoutY="151.0" prefHeight="1650.0" prefWidth="1000.0" vbarPolicy="ALWAYS">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1697.0" prefWidth="1000.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1650.0" prefWidth="1000.0">
                <children>
                   <VBox layoutY="25.0" prefHeight="340.0" prefWidth="183.0" style="-fx-background-color: #919191;">
                      <children>
@@ -113,22 +112,22 @@
                      </padding>
                   </VBox>
                   <ComboBox fx:id="comboFiltro" layoutX="775.0" layoutY="12.0" prefHeight="25.0" prefWidth="179.0" promptText="Ordenar por" styleClass="tipoLetra" />
-                  <VBox layoutX="200.0" layoutY="51.0" prefHeight="618.0" prefWidth="775.0" style="-fx-background-color: #d1d1d1;">
+                  <VBox layoutX="200.0" layoutY="51.0" prefHeight="1650.0" prefWidth="775.0" style="-fx-background-color: #d1d1d1;">
                      <children>
                         <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
                            <children>
-                              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgProducto1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Imagenes/Productos/Producto1.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="166.0" prefHeight="53.0" prefWidth="462.0" styleClass="LetraNombreProducto" text="Portatil asus 16GB RAM, 1TB almacenamiento, tarjeta grafica NVIDIA 4050RX" wrapText="true" />
-                              <Label layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$5.200.000" />
+                              <Label fx:id="lblNombre1" layoutX="166.0" prefHeight="53.0" prefWidth="569.0" styleClass="LetraNombreProducto" text="Portatil asus 16GB RAM, 1TB almacenamiento, tarjeta grafica NVIDIA 4050RX" wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal1" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$5.200.000" />
                               <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
                               <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
-                              <Label layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3.900.000" />
-                              <Label layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
-                              <Label layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="ASUS" />
+                              <Label fx:id="lblPrecioDescuento1" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3.900.000" />
+                              <Label fx:id="lblPorcentaje1" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
+                              <Label fx:id="lblMarca1" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="ASUS" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
@@ -143,11 +142,301 @@
                               </ImageView>
                            </children>
                         </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto11" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto2.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre11" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Portátil HP Victus Gaming, AMD Ryzen 5 con IA, 16GB RAM, 1TB SSD Almacenamiento, NVIDIA® GeForce RTX 3050  " wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal11" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$4,370,000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPrecioDescuento11" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3,277,500 " />
+                              <Label fx:id="lblPorcentaje11" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
+                              <Label fx:id="lblMarca11" layoutX="673.0" layoutY="125.0" styleClass="LetraMarca" text="HP" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto111" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto3.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre111" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Consola Playstation 5 Slim 1tb Con 2 Controles y Juego Fc 25 Ps5 Fisico" wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal111" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$5.734.000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPrecioDescuento111" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$4.300.000 " />
+                              <Label fx:id="lblPorcentaje111" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
+                              <Label fx:id="lblMarca111" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="SONY" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto112" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto4.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre112" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Mouse Gamer T-Dagger Imperial RGB" wrapText="true" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Label fx:id="lblPrecioDescuento112" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$100.000" />
+                              <Label fx:id="lblMarca112" layoutX="651.0" layoutY="125.0" styleClass="LetraMarca" text="IMPERIAL" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto113" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto5.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre113" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="iPhone 16 Pro-Max 1TB, color Desierto" wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal113" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$9,240,000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPrecioDescuento113" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$5,544,000 " />
+                              <Label fx:id="lblPorcentaje113" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="40% OFF" />
+                              <Label fx:id="lblMarca113" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto1131" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto6.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre1131" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Samsung Galaxy S25 ultra 256 GB, color Gris titani" wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal1131" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$7,360,000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPrecioDescuento1131" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$5,152,000  " />
+                              <Label fx:id="lblPorcentaje1131" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="30% OFF" />
+                              <Label fx:id="lblMarca1131" layoutX="648.0" layoutY="125.0" styleClass="LetraMarca" text="SAMSUNG" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto11311" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto7.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre11311" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Televisor SAMSUNG 75 pulgadas LED Uhd4K Smart TV" wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal11311" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$8,470,000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPrecioDescuento11311" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$7,623,000  " />
+                              <Label fx:id="lblPorcentaje11311" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="10% OFF" />
+                              <Label fx:id="lblMarca11311" layoutX="648.0" layoutY="125.0" styleClass="LetraMarca" text="SAMSUNG" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto11312" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto8.png" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre11312" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Impresora Multifuncional Epson L5590 Wifi Ecotank" wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal11312" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$5,230,000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPrecioDescuento11312" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$4,184,000 " />
+                              <Label fx:id="lblPorcentaje11312" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="20% OFF" />
+                              <Label fx:id="lblMarca11312" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="EPSON" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto11313" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto9.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre11313" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Apple iPad (10th Generation): with A14 Bionic chip, 64GB, 4 RAM" wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal11313" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$6,580,000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPrecioDescuento11313" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3,290,000  " />
+                              <Label fx:id="lblPorcentaje11313" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="50% OFF" />
+                              <Label fx:id="lblMarca11313" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
+                        <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
+                           <children>
+                              <ImageView fx:id="imgProducto113131" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Productos/Producto10.jpg" />
+                                 </image>
+                              </ImageView>
+                              <Label fx:id="lblNombre113131" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="AirPods Pro 2" wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal113131" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$4,370,000" />
+                              <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPrecioDescuento113131" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3,277,500  " />
+                              <Label fx:id="lblPorcentaje113131" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
+                              <Label fx:id="lblMarca113131" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Imagenes/favoritos.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </Pane>
                      </children>
                   </VBox>
                </children>
             </AnchorPane>
         </content>
       </ScrollPane>
+      <Circle fill="#919191" layoutX="972.0" layoutY="31.0" radius="22.0" stroke="BLACK" strokeType="INSIDE" />
+      <Pane fx:id="panelCarrito" layoutX="600.0" prefHeight="554.0" prefWidth="400.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Line endY="101.3332748413086" layoutY="38.0" startX="400.0" startY="101.3332748413086" />
+            <Label layoutX="156.0" layoutY="14.0" prefHeight="102.0" prefWidth="214.0" styleClass="LetraTitulos" text="Carrito de compras" wrapText="true" />
+            <Circle fill="WHITE" layoutX="73.0" layoutY="69.0" radius="54.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="33.0" layoutY="35.0" onMouseClicked="#mostrarCarrito" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/carro%20compras.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="opacidad" disable="true" prefHeight="554.0" prefWidth="601.0" style="-fx-background-color: white;" visible="false" />
    </children>
 </AnchorPane>

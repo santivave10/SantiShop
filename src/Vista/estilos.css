@@ -109,3 +109,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 .botonAddCarrito:preset{
     -fx-background-color: #849299;
 }
+
+.LetraTitulos{
+    -fx-font-family: verdana;
+    -fx-font-size: 40px;
+    -fx-text-fill: black;
+}
+
+.opacidad{
+    -fx-opacity: 0.5;
+    
+}
