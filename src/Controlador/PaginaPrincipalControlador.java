@@ -114,109 +114,107 @@ public class PaginaPrincipalControlador implements Initializable {
         opacidad.setManaged(false);
     }
     
-    private void agregarProductoAlCarrito(Producto producto) {
-    // Primero verificar si el producto ya existe en el carrito
-    for (Node node : contenedorCarrito.getChildren()) {
-        if (node instanceof HBox) {
-            HBox existingItem = (HBox) node;
-            // Obtener el VBox de información del producto (segunda posición)
-            if (existingItem.getChildren().size() > 1) {
-                VBox infoBox = (VBox) existingItem.getChildren().get(1);
-                if (infoBox.getChildren().size() > 0) {
-                    Label nameLabel = (Label) infoBox.getChildren().get(0);
-                    // Si encontramos el mismo nombre de producto, solo incrementamos la cantidad
-                    if (nameLabel.getText().equals(producto.getNombre())) {
-                        // El producto ya existe, solo incrementar la cantidad
-                        HBox controles = (HBox) existingItem.getChildren().get(2);
-                        Label lblCantidad = (Label) controles.getChildren().get(1);
-                        // Incrementar la cantidad
-                        int cantidad = Integer.parseInt(lblCantidad.getText()) + 1;
-                        lblCantidad.setText(String.valueOf(cantidad));
-                        return; // Terminar aquí ya que hemos actualizado el producto existente
-                    }
+   private void agregarProductoAlCarrito(Producto producto) {
+        // Buscar si el producto ya existe en el carrito visual
+        for (Node node : contenedorCarrito.getChildren()) {
+            if (node instanceof HBox) {
+                HBox item = (HBox) node;
+                VBox infoBox = (VBox) item.getChildren().get(1);
+                Label nameLabel = (Label) infoBox.getChildren().get(0);
+
+                if (nameLabel.getText().equals(producto.getNombre())) {
+                    // El producto ya existe, solo incrementamos la cantidad
+                    HBox controles = (HBox) item.getChildren().get(2);
+                    Label lblCantidad = (Label) controles.getChildren().get(1);
+                    int cantidad = Integer.parseInt(lblCantidad.getText()) + 1;
+                    lblCantidad.setText(String.valueOf(cantidad));
+                    return; // Terminar la función aquí
                 }
             }
         }
-    }
-    
-    // Si llegamos aquí, el producto no existe en el carrito, creamos un nuevo item
-    HBox contenedor = new HBox(8); // Espaciado horizontal
-    contenedor.setAlignment(Pos.CENTER_LEFT);
-    contenedor.setPadding(new Insets(10));
-    contenedor.setStyle("-fx-background-color: white; -fx-border-color: lightgray;");
-    contenedor.setPrefWidth(397); // Establecer ancho preferido
-    
-    // Imagen del producto
-    ImageView imagen = new ImageView(new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto.getImagenUrl())));
-    imagen.setFitWidth(50);
-    imagen.setFitHeight(50);
-    
-    // Información del producto
-    VBox infoProducto = new VBox(5);
-    infoProducto.setPrefWidth(150);
-    infoProducto.setMinWidth(100);
-    
-    Label lblNombre = new Label(producto.getNombre());
-    lblNombre.setStyle("-fx-font-weight: bold;");
-    lblNombre.setWrapText(true);
-    
-    Label lblPrecio = new Label("$" + String.format("%,.0f", producto.getPrecio() * (1 - producto.getDescuento())));
-    
-    infoProducto.getChildren().addAll(lblNombre, lblPrecio);
-    
-    // Controles de cantidad
-    HBox controles = new HBox(5);
-    controles.setAlignment(Pos.CENTER_RIGHT);
-    HBox.setHgrow(controles, Priority.ALWAYS);
-    
-    Label lblTextoCantidad = new Label("Cant:");
-    
-    Label lblCantidad = new Label("1");
-    lblCantidad.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
-    lblCantidad.setMinWidth(15);
-    
-    Button btnAumentar = new Button("+");
-    btnAumentar.setMinWidth(30);
-    btnAumentar.setPrefWidth(30);
-    
-    Button btnDisminuir = new Button("-");
-    btnDisminuir.setMinWidth(30);
-    btnDisminuir.setPrefWidth(30);
-    
-    // Botón eliminar
-    ImageView iconoBorrar = new ImageView(new Image(getClass().getResourceAsStream("/Vista/Imagenes/borrarindividual.png")));
-    iconoBorrar.setFitWidth(20);
-    iconoBorrar.setFitHeight(20);
-    Button btnBorrar = new Button();
-    btnBorrar.setGraphic(iconoBorrar);
-    btnBorrar.setStyle("-fx-background-color: transparent;");
-    
-    // Eventos
-    btnAumentar.setOnAction(e -> {
-        int cantidad = Integer.parseInt(lblCantidad.getText()) + 1;
-        lblCantidad.setText(String.valueOf(cantidad));
-    });
-    
-    btnDisminuir.setOnAction(e -> {
-        int cantidad = Integer.parseInt(lblCantidad.getText()) - 1;
-        if (cantidad <= 0) {
-            contenedorCarrito.getChildren().remove(contenedor);
-        } else {
+
+        // Si llegamos aquí, el producto no existe en el carrito, añadimos uno nuevo
+        HBox contenedor = new HBox(8);
+        contenedor.setAlignment(Pos.CENTER_LEFT);
+        contenedor.setPadding(new Insets(10));
+        contenedor.setStyle("-fx-background-color: white; -fx-border-color: lightgray;");
+        contenedor.setPrefWidth(397);
+
+        // Imagen del producto
+        ImageView imagen = new ImageView(new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto.getImagenUrl())));
+        imagen.setFitWidth(50);
+        imagen.setFitHeight(50);
+
+        // Información del producto
+        VBox infoProducto = new VBox(5);
+        infoProducto.setPrefWidth(150);
+        infoProducto.setMinWidth(100);
+
+        Label lblNombre = new Label(producto.getNombre());
+        lblNombre.setStyle("-fx-font-weight: bold;");
+        lblNombre.setWrapText(true);
+
+        Label lblPrecio = new Label("$" + String.format("%,.0f", producto.getPrecio() * (1 - producto.getDescuento())));
+
+        infoProducto.getChildren().addAll(lblNombre, lblPrecio);
+
+        // Controles de cantidad
+        HBox controles = new HBox(5);
+        controles.setAlignment(Pos.CENTER_RIGHT);
+        HBox.setHgrow(controles, Priority.ALWAYS);
+
+        Label lblTextoCantidad = new Label("Cant:");
+
+        Label lblCantidad = new Label("1");
+        lblCantidad.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
+        lblCantidad.setMinWidth(15);
+
+        Button btnAumentar = new Button("+");
+        btnAumentar.setMinWidth(30);
+        btnAumentar.setPrefWidth(30);
+
+        Button btnDisminuir = new Button("-");
+        btnDisminuir.setMinWidth(30);
+        btnDisminuir.setPrefWidth(30);
+
+        ImageView iconoBorrar = new ImageView(new Image(getClass().getResourceAsStream("/Vista/Imagenes/borrarindividual.png")));
+        iconoBorrar.setFitWidth(20);
+        iconoBorrar.setFitHeight(20);
+        Button btnBorrar = new Button();
+        btnBorrar.setGraphic(iconoBorrar);
+        btnBorrar.setStyle("-fx-background-color: transparent;");
+
+        // Eventos
+        btnAumentar.setOnAction(e -> {
+            int cantidad = Integer.parseInt(lblCantidad.getText()) + 1;
             lblCantidad.setText(String.valueOf(cantidad));
-        }
-    });
-    
-    btnBorrar.setOnAction(e -> {
-        contenedorCarrito.getChildren().remove(contenedor);
-    });
-    
-    controles.getChildren().addAll(lblTextoCantidad, lblCantidad, btnAumentar, btnDisminuir, btnBorrar);
-    
-    HBox.setHgrow(infoProducto, Priority.ALWAYS);
-    
-    contenedor.getChildren().addAll(imagen, infoProducto, controles);
-    contenedorCarrito.getChildren().add(contenedor);
-}
+            actualizarTotal(); // Si tienes este método
+        });
+
+        btnDisminuir.setOnAction(e -> {
+            int cantidad = Integer.parseInt(lblCantidad.getText()) - 1;
+            if (cantidad <= 0) {
+                contenedorCarrito.getChildren().remove(contenedor);
+            } else {
+                lblCantidad.setText(String.valueOf(cantidad));
+            }
+            actualizarTotal(); // Si tienes este método
+        });
+
+        btnBorrar.setOnAction(e -> {
+            contenedorCarrito.getChildren().remove(contenedor);
+            actualizarTotal(); // Si tienes este método
+        });
+
+        controles.getChildren().addAll(lblTextoCantidad, lblCantidad, btnAumentar, btnDisminuir, btnBorrar);
+
+        HBox.setHgrow(infoProducto, Priority.ALWAYS);
+
+        contenedor.getChildren().addAll(imagen, infoProducto, controles);
+        contenedorCarrito.getChildren().add(contenedor);
+
+        actualizarTotal(); // Si tienes este método
+    }
 
     @FXML
     private void agregarAlCarritoProducto1(ActionEvent event) {
