@@ -16,7 +16,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="742.0" prefWidth="1000.0" style="-fx-background-color: #E7E7E7;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.PaginaPrincipalControlador">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="1000.0" style="-fx-background-color: #E7E7E7;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.PaginaPrincipalControlador">
    <children>
       <HBox prefHeight="150.0" prefWidth="1000.0" style="-fx-background-color: #919191;">
          <children>
@@ -64,9 +64,9 @@
             </ImageView>
          </children>
       </HBox>
-      <ScrollPane hbarPolicy="NEVER" layoutY="151.0" prefHeight="1650.0" prefWidth="1000.0" vbarPolicy="ALWAYS">
+      <ScrollPane hbarPolicy="NEVER" layoutY="151.0" prefHeight="405.0" prefWidth="1000.0" vbarPolicy="ALWAYS">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1650.0" prefWidth="1000.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="1000.0">
                <children>
                   <VBox layoutY="25.0" prefHeight="340.0" prefWidth="183.0" style="-fx-background-color: #919191;">
                      <children>
@@ -112,7 +112,7 @@
                      </padding>
                   </VBox>
                   <ComboBox fx:id="comboFiltro" layoutX="775.0" layoutY="12.0" prefHeight="25.0" prefWidth="179.0" promptText="Ordenar por" styleClass="tipoLetra" />
-                  <VBox layoutX="200.0" layoutY="51.0" prefHeight="1650.0" prefWidth="775.0" style="-fx-background-color: #d1d1d1;">
+                  <VBox layoutX="200.0" layoutY="51.0" prefHeight="1551.0" prefWidth="775.0" style="-fx-background-color: #d1d1d1;">
                      <children>
                         <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
                            <children>
@@ -129,7 +129,7 @@
                               <Label fx:id="lblPorcentaje1" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
                               <Label fx:id="lblMarca1" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="ASUS" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
-                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto1" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Imagenes/Lista%20deseos.png" />
@@ -144,20 +144,20 @@
                         </Pane>
                         <Pane prefHeight="150.0" prefWidth="775.0" style="-fx-background-color: white;">
                            <children>
-                              <ImageView fx:id="imgProducto11" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgProducto2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Imagenes/Productos/Producto2.jpg" />
                                  </image>
                               </ImageView>
-                              <Label fx:id="lblNombre11" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Portátil HP Victus Gaming, AMD Ryzen 5 con IA, 16GB RAM, 1TB SSD Almacenamiento, NVIDIA® GeForce RTX 3050  " wrapText="true" />
-                              <Label fx:id="lblPrecioOriginal11" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$4,370,000" />
+                              <Label fx:id="lblNombre2" layoutX="166.0" prefHeight="53.0" prefWidth="571.0" styleClass="LetraNombreProducto" text="Portátil HP Victus Gaming, AMD Ryzen 5 con IA, 16GB RAM, 1TB SSD Almacenamiento, NVIDIA® GeForce RTX 3050  " wrapText="true" />
+                              <Label fx:id="lblPrecioOriginal2" layoutX="166.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$4,370,000" />
                               <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
                               <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="197.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
-                              <Label fx:id="lblPrecioDescuento11" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3,277,500 " />
-                              <Label fx:id="lblPorcentaje11" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
-                              <Label fx:id="lblMarca11" layoutX="673.0" layoutY="125.0" styleClass="LetraMarca" text="HP" />
+                              <Label fx:id="lblPrecioDescuento2" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3,277,500 " />
+                              <Label fx:id="lblPorcentaje2" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
+                              <Label fx:id="lblMarca2" layoutX="673.0" layoutY="125.0" styleClass="LetraMarca" text="HP" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
-                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+                              <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto2" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@Imagenes/Lista%20deseos.png" />
@@ -435,8 +435,17 @@
                   <Image url="@Imagenes/carro%20compras.png" />
                </image>
             </ImageView>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutY="140.0" prefHeight="250.0" prefWidth="400.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <VBox fx:id="contenedorCarrito" layoutX="-1.0" layoutY="-8.0" prefHeight="100.0" prefWidth="397.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
          </children>
       </Pane>
-      <Pane fx:id="opacidad" disable="true" prefHeight="554.0" prefWidth="601.0" style="-fx-background-color: white;" visible="false" />
+      <Pane fx:id="opacidad" onMouseClicked="#volver" prefHeight="554.0" prefWidth="601.0" style="-fx-background-color: white;" visible="false" />
    </children>
 </AnchorPane>

@@ -137,7 +137,7 @@ public class RegisterControlador implements Initializable{
                 Alert alerta = new Alert(Alert.AlertType.ERROR);
                 alerta.setTitle("Error de Registro");
                 alerta.setHeaderText(null);
-                alerta.setContentText("El usuario ya existe. Intenta con otro nombre.");
+                alerta.setContentText("El usuario ya existe. Intenta con otro nombre de usuario.");
                 alerta.showAndWait();
                 txtUsuario.requestFocus();
             } else {

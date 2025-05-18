@@ -28,4 +28,5 @@ public class Producto {
     public double getDescuento() { return descuento; }
     public String getMarca() { return marca; }
     public String getImagenUrl() { return imagenUrl; }
+
 }

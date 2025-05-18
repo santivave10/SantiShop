@@ -26,14 +26,14 @@ public class Principal extends Application{
         Parent root = null;
         
          try { 
-            root = FXMLLoader.load(getClass().getResource("PaginaPrincipal.fxml"));
+                root = FXMLLoader.load(getClass().getResource("PaginaPrincipal.fxml"));
          } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
          }
         
         Scene escena = new Scene(root);
         primaryStage.setScene(escena);
-        primaryStage.setTitle("SantiShop - Registro");
+        primaryStage.setTitle("SantiShop - Inicio de sesión");
         primaryStage.setResizable(false);
         primaryStage.show();
     }
