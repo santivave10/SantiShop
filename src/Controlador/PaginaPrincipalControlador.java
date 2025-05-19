@@ -53,7 +53,9 @@ public class PaginaPrincipalControlador implements Initializable {
     @FXML private Label lblMarca3;
     @FXML private ImageView imgProducto4;
     @FXML private Label lblNombre4;
+    @FXML private Label lblPrecioOriginal4;
     @FXML private Label lblPrecioDescuento4;
+    @FXML private Label lblPorcentaje4;
     @FXML private Label lblMarca4;
     @FXML private ImageView imgProducto5;
     @FXML private Label lblNombre5;
@@ -116,6 +118,11 @@ public class PaginaPrincipalControlador implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboFiltro.getItems().addAll("Precio Mayor", "Precio Menor", "Descuento");  
+        //Configurar el evento de selección para el ComboBox
+        comboFiltro.setOnAction(this::filtrarProductos);
+
+        // Inicializar el arreglo de productos para el filtrado
+        inicializarArregloProductos();
         
         producto1 = new Producto(
         "Portátil ASUS 16GB RAM, 1TB almacenamiento, tarjeta gráfica NVIDIA 4050RX",
@@ -170,8 +177,10 @@ public class PaginaPrincipalControlador implements Initializable {
         "Producto4.jpg"
         );  
         lblNombre4.setText(producto4.getNombre());
+        lblPrecioOriginal4.setText("$" + String.format("%,.0f", producto4.getPrecio()));
         lblPrecioDescuento4.setText("$" + String.format("%,.0f", producto4.getPrecio() * (1 - producto4.getDescuento())));
         lblMarca4.setText(producto4.getMarca());
+        lblPorcentaje4.setText((int)(producto4.getDescuento() * 100) + "% OFF");
         Image imagen4 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto4.getImagenUrl()));
         imgProducto4.setImage(imagen4);
         
@@ -523,5 +532,279 @@ public class PaginaPrincipalControlador implements Initializable {
         lblTotal.setText("$0");
     }
 
+    // Crear un arreglo de productos para facilitar su ordenamiento
+private Producto[] productosArray;
+
+// Método para inicializar el arreglo de productos
+private void inicializarArregloProductos() {
+    // Verificar que todas las referencias a productos existan
+    if (producto1 == null || producto2 == null || producto3 == null || producto4 == null || producto5 == null ||
+        producto6 == null || producto7 == null || producto8 == null || producto9 == null || producto10 == null) {
+        System.out.println("ERROR: Uno o más productos no han sido inicializados correctamente");
+        // Podríamos intentar inicializarlos aquí si es necesario
+        return;
+    }
+    
+    // Si todos los productos existen, crear el arreglo
+    productosArray = new Producto[]{
+        producto1, producto2, producto3, producto4, producto5,
+        producto6, producto7, producto8, producto9, producto10
+    };
+    
+    System.out.println("Arreglo de productos inicializado correctamente");
+}
+
+// Método que se ejecuta cuando el usuario selecciona una opción en el ComboBox
+@FXML
+private void filtrarProductos(ActionEvent event) {
+    String criterio = comboFiltro.getValue();
+    if (criterio == null) return;
+    
+    System.out.println("Criterio de filtrado seleccionado: " + criterio);
+    
+    try {
+        // Asegurarnos que el arreglo está inicializado
+        if (productosArray == null) {
+            inicializarArregloProductos();
+        }
+        
+        // Verificar si el arreglo se inicializó correctamente
+        if (productosArray == null) {
+            System.out.println("ERROR: No se pudo inicializar el arreglo de productos");
+            return;
+        }
+        
+        // Ordenar según el criterio seleccionado
+        switch (criterio) {
+            case "Precio Mayor":
+                ordenarPorPrecioMayor();
+                break;
+            case "Precio Menor":
+                ordenarPorPrecioMenor();
+                break;
+            case "Descuento":
+                ordenarPorDescuento();
+                break;
+            default:
+                System.out.println("Criterio no reconocido: " + criterio);
+                return;
+        }
+        
+        // Actualizar la visualización con el nuevo orden
+        actualizarVisualizacionProductos();
+        
+    } catch (Exception e) {
+        System.out.println("ERROR durante el filtrado: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
+
+
+// Ordena los productos de mayor a menor precio CON DESCUENTO APLICADO
+private void ordenarPorPrecioMayor() {
+    // Verificar si hay elementos nulos en el arreglo
+    boolean hayElementosNulos = false;
+    for (int i = 0; i < productosArray.length; i++) {
+        if (productosArray[i] == null) {
+            hayElementosNulos = true;
+            System.out.println("ADVERTENCIA: Elemento nulo encontrado en la posición " + i);
+        }
+    }
+    
+    // Si hay elementos nulos, inicializar o reinicializar el arreglo
+    if (hayElementosNulos) {
+        inicializarArregloProductos();
+        System.out.println("Se ha reinicializado el arreglo de productos debido a elementos nulos");
+        return; // Salimos para evitar ordenar un arreglo potencialmente incompleto
+    }
+    
+    // Continuar con el ordenamiento normal si no hay elementos nulos
+    for (int i = 0; i < productosArray.length - 1; i++) {
+        for (int j = 0; j < productosArray.length - i - 1; j++) {
+            // Comparar precios CON descuento aplicado
+            double precioDespuesDescuentoJ = productosArray[j].getPrecio() * (1 - productosArray[j].getDescuento());
+            double precioDespuesDescuentoJPlus1 = productosArray[j + 1].getPrecio() * (1 - productosArray[j + 1].getDescuento());
+            
+            if (precioDespuesDescuentoJ < precioDespuesDescuentoJPlus1) {
+                // Intercambiar productos
+                Producto temp = productosArray[j];
+                productosArray[j] = productosArray[j + 1];
+                productosArray[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Ordena los productos de menor a mayor precio CON DESCUENTO APLICADO
+private void ordenarPorPrecioMenor() {
+    // Verificar si hay elementos nulos en el arreglo
+    boolean hayElementosNulos = false;
+    for (int i = 0; i < productosArray.length; i++) {
+        if (productosArray[i] == null) {
+            hayElementosNulos = true;
+            System.out.println("ADVERTENCIA: Elemento nulo encontrado en la posición " + i);
+        }
+    }
+    
+    // Si hay elementos nulos, inicializar o reinicializar el arreglo
+    if (hayElementosNulos) {
+        inicializarArregloProductos();
+        System.out.println("Se ha reinicializado el arreglo de productos debido a elementos nulos");
+        return; // Salimos para evitar ordenar un arreglo potencialmente incompleto
+    }
+    
+    // Continuar con el ordenamiento normal si no hay elementos nulos
+    for (int i = 0; i < productosArray.length - 1; i++) {
+        for (int j = 0; j < productosArray.length - i - 1; j++) {
+            // Comparar precios CON descuento aplicado
+            double precioDespuesDescuentoJ = productosArray[j].getPrecio() * (1 - productosArray[j].getDescuento());
+            double precioDespuesDescuentoJPlus1 = productosArray[j + 1].getPrecio() * (1 - productosArray[j + 1].getDescuento());
+            
+            if (precioDespuesDescuentoJ > precioDespuesDescuentoJPlus1) {
+                // Intercambiar productos
+                Producto temp = productosArray[j];
+                productosArray[j] = productosArray[j + 1];
+                productosArray[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Ordena los productos por porcentaje de descuento (de mayor a menor)
+private void ordenarPorDescuento() {
+    // Verificar si hay elementos nulos en el arreglo
+    boolean hayElementosNulos = false;
+    for (int i = 0; i < productosArray.length; i++) {
+        if (productosArray[i] == null) {
+            hayElementosNulos = true;
+            System.out.println("ADVERTENCIA: Elemento nulo encontrado en la posición " + i);
+        }
+    }
+    
+    // Si hay elementos nulos, inicializar o reinicializar el arreglo
+    if (hayElementosNulos) {
+        inicializarArregloProductos();
+        System.out.println("Se ha reinicializado el arreglo de productos debido a elementos nulos");
+        return; // Salimos para evitar ordenar un arreglo potencialmente incompleto
+    }
+    
+    // Continuar con el ordenamiento normal si no hay elementos nulos
+    for (int i = 0; i < productosArray.length - 1; i++) {
+        for (int j = 0; j < productosArray.length - i - 1; j++) {
+            // Comparar porcentajes de descuento
+            if (productosArray[j].getDescuento() < productosArray[j + 1].getDescuento()) {
+                // Intercambiar productos
+                Producto temp = productosArray[j];
+                productosArray[j] = productosArray[j + 1];
+                productosArray[j + 1] = temp;
+            }
+        }
+    }
+}
+
+// Actualiza la visualización de los productos según el nuevo orden
+private void actualizarVisualizacionProductos() {
+    // Actualizar producto 1
+    lblNombre1.setText(productosArray[0].getNombre());
+    lblPrecioOriginal1.setText("$" + String.format("%,.0f", productosArray[0].getPrecio()));
+    lblPrecioDescuento1.setText("$" + String.format("%,.0f", productosArray[0].getPrecio() * (1 - productosArray[0].getDescuento())));
+    lblPorcentaje1.setText((int)(productosArray[0].getDescuento() * 100) + "% OFF");
+    lblMarca1.setText(productosArray[0].getMarca());
+    Image imagen1 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[0].getImagenUrl()));
+    imgProducto1.setImage(imagen1);
+    
+    // Actualizar producto 2
+    lblNombre2.setText(productosArray[1].getNombre());
+    lblPrecioOriginal2.setText("$" + String.format("%,.0f", productosArray[1].getPrecio()));
+    lblPrecioDescuento2.setText("$" + String.format("%,.0f", productosArray[1].getPrecio() * (1 - productosArray[1].getDescuento())));
+    lblPorcentaje2.setText((int)(productosArray[1].getDescuento() * 100) + "% OFF");
+    lblMarca2.setText(productosArray[1].getMarca());
+    Image imagen2 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[1].getImagenUrl()));
+    imgProducto2.setImage(imagen2);
+    
+    // Actualizar producto 3
+    lblNombre3.setText(productosArray[2].getNombre());
+    lblPrecioOriginal3.setText("$" + String.format("%,.0f", productosArray[2].getPrecio()));
+    lblPrecioDescuento3.setText("$" + String.format("%,.0f", productosArray[2].getPrecio() * (1 - productosArray[2].getDescuento())));
+    lblPorcentaje3.setText((int)(productosArray[2].getDescuento() * 100) + "% OFF");
+    lblMarca3.setText(productosArray[2].getMarca());
+    Image imagen3 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[2].getImagenUrl()));
+    imgProducto3.setImage(imagen3);
+    
+    // Actualizar producto 4
+    lblNombre4.setText(productosArray[3].getNombre());
+    lblPrecioOriginal4.setText("$" + String.format("%,.0f", productosArray[3].getPrecio()));
+    lblPrecioDescuento4.setText("$" + String.format("%,.0f", productosArray[3].getPrecio() * (1 - productosArray[3].getDescuento())));
+    lblPorcentaje4.setText((int)(productosArray[3].getDescuento() * 100) + "% OFF");
+    lblMarca4.setText(productosArray[3].getMarca());
+    Image imagen4 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[3].getImagenUrl()));
+    imgProducto4.setImage(imagen4);
+
+    // Actualizar producto 5
+    lblNombre5.setText(productosArray[4].getNombre());
+    lblPrecioOriginal5.setText("$" + String.format("%,.0f", productosArray[4].getPrecio()));
+    lblPrecioDescuento5.setText("$" + String.format("%,.0f", productosArray[4].getPrecio() * (1 - productosArray[4].getDescuento())));
+    lblPorcentaje5.setText((int)(productosArray[4].getDescuento() * 100) + "% OFF");
+    lblMarca5.setText(productosArray[4].getMarca());
+    Image imagen5 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[4].getImagenUrl()));
+    imgProducto5.setImage(imagen5);
+    
+    // Actualizar producto 6
+    lblNombre6.setText(productosArray[5].getNombre());
+    lblPrecioOriginal6.setText("$" + String.format("%,.0f", productosArray[5].getPrecio()));
+    lblPrecioDescuento6.setText("$" + String.format("%,.0f", productosArray[5].getPrecio() * (1 - productosArray[5].getDescuento())));
+    lblPorcentaje6.setText((int)(productosArray[5].getDescuento() * 100) + "% OFF");
+    lblMarca6.setText(productosArray[5].getMarca());
+    Image imagen6 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[5].getImagenUrl()));
+    imgProducto6.setImage(imagen6);
+    
+    // Actualizar producto 7
+    lblNombre7.setText(productosArray[6].getNombre());
+    lblPrecioOriginal7.setText("$" + String.format("%,.0f", productosArray[6].getPrecio()));
+    lblPrecioDescuento7.setText("$" + String.format("%,.0f", productosArray[6].getPrecio() * (1 - productosArray[6].getDescuento())));
+    lblPorcentaje7.setText((int)(productosArray[6].getDescuento() * 100) + "% OFF");
+    lblMarca7.setText(productosArray[6].getMarca());
+    Image imagen7 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[6].getImagenUrl()));
+    imgProducto7.setImage(imagen7);
+    
+    // Actualizar producto 8
+    lblNombre8.setText(productosArray[7].getNombre());
+    lblPrecioOriginal8.setText("$" + String.format("%,.0f", productosArray[7].getPrecio()));
+    lblPrecioDescuento8.setText("$" + String.format("%,.0f", productosArray[7].getPrecio() * (1 - productosArray[7].getDescuento())));
+    lblPorcentaje8.setText((int)(productosArray[7].getDescuento() * 100) + "% OFF");
+    lblMarca8.setText(productosArray[7].getMarca());
+    Image imagen8 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[7].getImagenUrl()));
+    imgProducto8.setImage(imagen8);
+    
+    // Actualizar producto 9
+    lblNombre9.setText(productosArray[8].getNombre());
+    lblPrecioOriginal9.setText("$" + String.format("%,.0f", productosArray[8].getPrecio()));
+    lblPrecioDescuento9.setText("$" + String.format("%,.0f", productosArray[8].getPrecio() * (1 - productosArray[8].getDescuento())));
+    lblPorcentaje9.setText((int)(productosArray[8].getDescuento() * 100) + "% OFF");
+    lblMarca9.setText(productosArray[8].getMarca());
+    Image imagen9 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[8].getImagenUrl()));
+    imgProducto9.setImage(imagen9);
+    
+    // Actualizar producto 10
+    lblNombre10.setText(productosArray[9].getNombre());
+    lblPrecioOriginal10.setText("$" + String.format("%,.0f", productosArray[9].getPrecio()));
+    lblPrecioDescuento10.setText("$" + String.format("%,.0f", productosArray[9].getPrecio() * (1 - productosArray[9].getDescuento())));
+    lblPorcentaje10.setText((int)(productosArray[9].getDescuento() * 100) + "% OFF");
+    lblMarca10.setText(productosArray[9].getMarca());
+    Image imagen10 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + productosArray[9].getImagenUrl()));
+    imgProducto10.setImage(imagen10);
+    
+    // También actualizamos las referencias de productos originales para mantener la coherencia
+    producto1 = productosArray[0];
+    producto2 = productosArray[1];
+    producto3 = productosArray[2];
+    producto4 = productosArray[3];
+    producto5 = productosArray[4];
+    producto6 = productosArray[5];
+    producto7 = productosArray[6];
+    producto8 = productosArray[7];
+    producto9 = productosArray[8];
+    producto10 = productosArray[9];
+}
 
 }

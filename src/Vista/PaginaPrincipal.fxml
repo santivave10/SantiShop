@@ -17,7 +17,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="1000.0" style="-fx-background-color: #E7E7E7;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.PaginaPrincipalControlador">
+<AnchorPane id="AnchorPane" prefHeight="555.0" prefWidth="1012.0" style="-fx-background-color: #E7E7E7;" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controlador.PaginaPrincipalControlador">
    <children>
       <HBox prefHeight="150.0" prefWidth="1012.0" style="-fx-background-color: #919191;">
          <children>
@@ -228,6 +228,9 @@
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
                               </ImageView>
+                              <Label fx:id="lblPrecioOriginal4" layoutX="177.0" layoutY="68.0" styleClass="LetraPrecioOriginal" text="\$100.000" />
+                              <Line endX="61.202178955078125" endY="-0.4999847412109375" layoutX="200.0" layoutY="78.0" startX="-25.999969482421875" startY="-0.4999847412109375" stroke="#575757" />
+                              <Label fx:id="lblPorcentaje4" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="0%" />
                            </children>
                            <VBox.margin>
                               <Insets top="5.0" />
