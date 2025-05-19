@@ -95,6 +95,7 @@ public class PaginaPrincipalControlador implements Initializable {
     @FXML private Label lblMarca10;
     @FXML private ComboBox<String> comboFiltro;
     @FXML private Pane panelCarrito;
+    @FXML private Pane panelOpciones;
     @FXML private Pane opacidad;
     @FXML private VBox contenedorCarrito;
     @FXML private Label lblCantidadCarrito;
@@ -282,11 +283,14 @@ public class PaginaPrincipalControlador implements Initializable {
         panelCarrito.setManaged(true);
         opacidad.setVisible(true);
         opacidad.setManaged(true);
+        panelOpciones.setVisible(false);
+        panelOpciones.setManaged(false);
         opacidad.setOpacity(0.5);
+        
     }
     
     @FXML
-    private void volver(MouseEvent event){
+    private void volverCarrito(MouseEvent event){
         panelCarrito.setVisible(false);
         panelCarrito.setManaged(false);
         opacidad.setVisible(false);
@@ -807,4 +811,15 @@ private void actualizarVisualizacionProductos() {
     producto10 = productosArray[9];
 }
 
+    @FXML
+    private void mostrarOpciones(MouseEvent event) {
+        panelOpciones.setVisible(true);
+        panelOpciones.setManaged(true);   
+    }
+    
+    @FXML
+    private void volverOpciones(MouseEvent event) {
+        panelOpciones.setVisible(false);
+        panelOpciones.setManaged(false);   
+    }
 }

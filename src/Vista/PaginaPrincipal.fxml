@@ -42,7 +42,7 @@
                   <Insets />
                </opaqueInsets>
             </Pane>
-            <ImageView fitHeight="80.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="80.0" fitWidth="100.0" onMouseClicked="#mostrarOpciones" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                <image>
                   <Image url="@Imagenes/Icono%20usuario.png" />
                </image>
@@ -67,7 +67,7 @@
       </HBox>
       <ScrollPane hbarPolicy="NEVER" layoutY="151.0" prefHeight="405.0" prefWidth="1012.0" vbarPolicy="ALWAYS">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="1000.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" onMouseClicked="#volverOpciones" prefWidth="1000.0">
                <children>
                   <VBox layoutY="25.0" prefHeight="340.0" prefWidth="183.0" style="-fx-background-color: #919191;">
                      <children>
@@ -466,6 +466,14 @@
             <Label fx:id="lblTotal" layoutX="79.0" layoutY="472.0" styleClass="LetraPrecioDescuento" />
          </children>
       </Pane>
-      <Pane fx:id="opacidad" onMouseClicked="#volver" prefHeight="554.0" prefWidth="601.0" style="-fx-background-color: white;" visible="false" />
+      <Pane fx:id="opacidad" onMouseClicked="#volverCarrito" prefHeight="554.0" prefWidth="601.0" style="-fx-background-color: white;" visible="false" />
+      <Pane fx:id="panelOpciones" layoutX="668.0" layoutY="150.0" prefHeight="165.0" prefWidth="231.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Label layoutX="70.0" layoutY="10.0" styleClass="tipoLetraVinculosPagPrincipal" text="Favoritos" />
+            <Label layoutX="38.0" layoutY="50.0" styleClass="tipoLetraVinculosPagPrincipal" text="Lista de deseos" />
+            <Label layoutX="10.0" layoutY="90.0" styleClass="tipoLetraVinculosPagPrincipal" text="Historial de compras" />
+            <Label layoutX="64.0" layoutY="130.0" styleClass="tipoLetraVinculosPagPrincipal" text="Mi cuenta" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
