@@ -12,8 +12,8 @@ import Modelo.Producto;
  * @author santi
  */
 public class ListaProductos {
-    private NodoDoble cab;
-    private NodoDoble cola;
+    private NodoDoble<Producto> cab;
+    private NodoDoble<Producto> cola;
 
     public ListaProductos() {
         cab = null;
@@ -38,4 +38,30 @@ public class ListaProductos {
     public boolean estaVacia() {
         return cab == null;
     }
+    
+    public Producto buscarPorNombre(String nombre) {
+    NodoDoble<Producto> actual = cab;
+    while (actual != null) {
+        if (actual.dato.getNombre().equals(nombre)) {
+            return actual.dato;
+        }
+        actual = actual.sig;
+    }
+    return null;
+}
+    public void vaciarCarrito() {
+        // Liberar referencias para permitir la recolección de basura
+        NodoDoble<Producto> actual = cab;
+        while (actual != null) {
+            NodoDoble<Producto> siguiente = actual.sig;
+            actual.ant = null;
+            actual.sig = null;
+            actual = siguiente;
+        }
+        
+        // Resetear la cabeza y cola de la lista
+        cab = null;
+        cola = null;
+    }
+
 }

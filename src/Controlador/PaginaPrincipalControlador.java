@@ -12,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import static javafx.scene.Cursor.cursor;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -44,10 +45,60 @@ public class PaginaPrincipalControlador implements Initializable {
     @FXML private Label lblPrecioDescuento2;
     @FXML private Label lblPorcentaje2;
     @FXML private Label lblMarca2;
+    @FXML private ImageView imgProducto3;
+    @FXML private Label lblNombre3;
+    @FXML private Label lblPrecioOriginal3;
+    @FXML private Label lblPrecioDescuento3;
+    @FXML private Label lblPorcentaje3;
+    @FXML private Label lblMarca3;
+    @FXML private ImageView imgProducto4;
+    @FXML private Label lblNombre4;
+    @FXML private Label lblPrecioDescuento4;
+    @FXML private Label lblMarca4;
+    @FXML private ImageView imgProducto5;
+    @FXML private Label lblNombre5;
+    @FXML private Label lblPrecioOriginal5;
+    @FXML private Label lblPrecioDescuento5;
+    @FXML private Label lblPorcentaje5;
+    @FXML private Label lblMarca5;
+    @FXML private ImageView imgProducto6;
+    @FXML private Label lblNombre6;
+    @FXML private Label lblPrecioOriginal6;
+    @FXML private Label lblPrecioDescuento6;
+    @FXML private Label lblPorcentaje6;
+    @FXML private Label lblMarca6;
+    @FXML private ImageView imgProducto7;
+    @FXML private Label lblNombre7;
+    @FXML private Label lblPrecioOriginal7;
+    @FXML private Label lblPrecioDescuento7;
+    @FXML private Label lblPorcentaje7;
+    @FXML private Label lblMarca7;
+    @FXML private ImageView imgProducto8;
+    @FXML private Label lblNombre8;
+    @FXML private Label lblPrecioOriginal8;
+    @FXML private Label lblPrecioDescuento8;
+    @FXML private Label lblPorcentaje8;
+    @FXML private Label lblMarca8;
+    @FXML private ImageView imgProducto9;
+    @FXML private Label lblNombre9;
+    @FXML private Label lblPrecioOriginal9;
+    @FXML private Label lblPrecioDescuento9;
+    @FXML private Label lblPorcentaje9;
+    @FXML private Label lblMarca9;
+    @FXML private ImageView imgProducto10;
+    @FXML private Label lblNombre10;
+    @FXML private Label lblPrecioOriginal10;
+    @FXML private Label lblPrecioDescuento10;
+    @FXML private Label lblPorcentaje10;
+    @FXML private Label lblMarca10;
     @FXML private ComboBox<String> comboFiltro;
     @FXML private Pane panelCarrito;
     @FXML private Pane opacidad;
     @FXML private VBox contenedorCarrito;
+    @FXML private Label lblCantidadCarrito;
+    @FXML private Label lblSubtotal;
+    @FXML private Label lblDescuento;
+    @FXML private Label lblTotal;
    
     private Producto producto1;
     private Producto producto2;
@@ -60,6 +111,8 @@ public class PaginaPrincipalControlador implements Initializable {
     private Producto producto9;
     private Producto producto10;
 
+    
+    private ListaProductos listaCarrito = new ListaProductos();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboFiltro.getItems().addAll("Precio Mayor", "Precio Menor", "Descuento");  
@@ -94,6 +147,123 @@ public class PaginaPrincipalControlador implements Initializable {
         Image imagen2 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto2.getImagenUrl()));
         imgProducto2.setImage(imagen2);
         
+        producto3 = new Producto(
+        "Consola Playstation 5 Slim 1tb Con 2 Controles y Juego Fc 25 Ps5 Fisico",
+        4360000,
+        0.2,
+        "SONY",
+        "Producto3.jpg"
+        );  
+        lblNombre3.setText(producto3.getNombre());
+        lblPrecioOriginal3.setText("$" + String.format("%,.0f", producto3.getPrecio()));
+        lblPrecioDescuento3.setText("$" + String.format("%,.0f", producto3.getPrecio() * (1 - producto3.getDescuento())));
+        lblPorcentaje3.setText((int)(producto3.getDescuento() * 100) + "% OFF");
+        lblMarca3.setText(producto3.getMarca());
+        Image imagen3 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto3.getImagenUrl()));
+        imgProducto3.setImage(imagen3);
+        
+        producto4 = new Producto(
+        "Mouse Gamer T-Dagger Imperial RGB",
+        100000,
+        0,
+        "IMPERIAL",
+        "Producto4.jpg"
+        );  
+        lblNombre4.setText(producto4.getNombre());
+        lblPrecioDescuento4.setText("$" + String.format("%,.0f", producto4.getPrecio() * (1 - producto4.getDescuento())));
+        lblMarca4.setText(producto4.getMarca());
+        Image imagen4 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto4.getImagenUrl()));
+        imgProducto4.setImage(imagen4);
+        
+        producto5 = new Producto(
+        "iPhone 16 Pro-Max 1TB, color Desierto",
+        9240000,
+        0.4,
+        "APPLE",
+        "Producto5.jpg"
+        );  
+        lblNombre5.setText(producto5.getNombre());
+        lblPrecioOriginal5.setText("$" + String.format("%,.0f", producto5.getPrecio()));
+        lblPrecioDescuento5.setText("$" + String.format("%,.0f", producto5.getPrecio() * (1 - producto5.getDescuento())));
+        lblPorcentaje5.setText((int)(producto5.getDescuento() * 100) + "% OFF");
+        lblMarca5.setText(producto5.getMarca());
+        Image imagen5 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto5.getImagenUrl()));
+        imgProducto5.setImage(imagen5);
+        
+        producto6 = new Producto(
+        "Samsung Galaxy S25 ultra 256 GB, color Gris titani",
+        7360000,
+        0.3,
+        "SAMSUNG",
+        "Producto6.png"
+        );  
+        lblNombre6.setText(producto6.getNombre());
+        lblPrecioOriginal6.setText("$" + String.format("%,.0f", producto6.getPrecio()));
+        lblPrecioDescuento6.setText("$" + String.format("%,.0f", producto6.getPrecio() * (1 - producto6.getDescuento())));
+        lblPorcentaje6.setText((int)(producto6.getDescuento() * 100) + "% OFF");
+        lblMarca6.setText(producto6.getMarca());
+        Image imagen6 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto6.getImagenUrl()));
+        imgProducto6.setImage(imagen6);
+        
+        producto7 = new Producto(
+        "Televisor SAMSUNG 75 pulgadas LED Uhd4K Smart TV",
+        8470000,
+        0.1,
+        "SAMSUNG",
+        "Producto7.jpg"
+        );  
+        lblNombre7.setText(producto7.getNombre());
+        lblPrecioOriginal7.setText("$" + String.format("%,.0f", producto7.getPrecio()));
+        lblPrecioDescuento7.setText("$" + String.format("%,.0f", producto7.getPrecio() * (1 - producto7.getDescuento())));
+        lblPorcentaje7.setText((int)(producto7.getDescuento() * 100) + "% OFF");
+        lblMarca7.setText(producto7.getMarca());
+        Image imagen7 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto7.getImagenUrl()));
+        imgProducto7.setImage(imagen7);
+        
+        producto8 = new Producto(
+        "Impresora Multifuncional Epson L5590 Wifi Ecotank",
+        5230000,
+        0.2,
+        "EPSON",
+        "Producto8.png"
+        );  
+        lblNombre8.setText(producto8.getNombre());
+        lblPrecioOriginal8.setText("$" + String.format("%,.0f", producto8.getPrecio()));
+        lblPrecioDescuento8.setText("$" + String.format("%,.0f", producto8.getPrecio() * (1 - producto8.getDescuento())));
+        lblPorcentaje8.setText((int)(producto8.getDescuento() * 100) + "% OFF");
+        lblMarca8.setText(producto8.getMarca());
+        Image imagen8 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto8.getImagenUrl()));
+        imgProducto8.setImage(imagen8);
+        
+        producto9 = new Producto(
+        "Apple iPad (10th Generation): with A14 Bionic chip, 64GB, 4 RAM",
+        6580000,
+        0.5,
+        "APPLE",
+        "Producto9.jpg"
+        );  
+        lblNombre9.setText(producto9.getNombre());
+        lblPrecioOriginal9.setText("$" + String.format("%,.0f", producto9.getPrecio()));
+        lblPrecioDescuento9.setText("$" + String.format("%,.0f", producto9.getPrecio() * (1 - producto9.getDescuento())));
+        lblPorcentaje9.setText((int)(producto9.getDescuento() * 100) + "% OFF");
+        lblMarca9.setText(producto9.getMarca());
+        Image imagen9 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto9.getImagenUrl()));
+        imgProducto9.setImage(imagen9);
+        
+        producto10 = new Producto(
+        "AirPods Pro 2",
+        4370000,
+        0.25,
+        "APPLE",
+        "Producto10.jpg"
+        );  
+        lblNombre10.setText(producto10.getNombre());
+        lblPrecioOriginal10.setText("$" + String.format("%,.0f", producto10.getPrecio()));
+        lblPrecioDescuento10.setText("$" + String.format("%,.0f", producto10.getPrecio() * (1 - producto10.getDescuento())));
+        lblPorcentaje10.setText((int)(producto10.getDescuento() * 100) + "% OFF");
+        lblMarca10.setText(producto10.getMarca());
+        Image imagen10 = new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto10.getImagenUrl()));
+        imgProducto10.setImage(imagen10);
     }
     
     
@@ -114,6 +284,42 @@ public class PaginaPrincipalControlador implements Initializable {
         opacidad.setManaged(false);
     }
     
+    
+
+    private void actualizarTotales() {
+    double subtotal = 0;
+    double descuento = 0;
+    double total = 0;
+
+    for (Node node : contenedorCarrito.getChildren()) {
+        if (node instanceof HBox) {
+            HBox item = (HBox) node;
+            VBox info = (VBox) item.getChildren().get(1);
+            Label lblNombre = (Label) info.getChildren().get(0);
+            String nombreProducto = lblNombre.getText();
+
+            // Busca el producto en la lista lógica
+            Producto producto = listaCarrito.buscarPorNombre(nombreProducto);
+
+            if (producto != null) {
+                double precio = producto.getPrecio();
+                double porcDesc = producto.getDescuento();
+
+                HBox controles = (HBox) item.getChildren().get(2);
+                Label lblCantidad = (Label) controles.getChildren().get(1);
+                int cantidad = Integer.parseInt(lblCantidad.getText());
+
+                subtotal += precio * cantidad;
+                descuento += precio * porcDesc * cantidad;
+                total += (precio * (1 - porcDesc)) * cantidad;
+            }
+        }
+    }
+    lblSubtotal.setText("$" + String.format("%,.0f", subtotal));
+    lblDescuento.setText("$" + String.format("%,.0f", descuento));
+    lblTotal.setText("$" + String.format("%,.0f", total));
+}
+
    private void agregarProductoAlCarrito(Producto producto) {
         // Buscar si el producto ya existe en el carrito visual
         for (Node node : contenedorCarrito.getChildren()) {
@@ -170,10 +376,12 @@ public class PaginaPrincipalControlador implements Initializable {
         lblCantidad.setMinWidth(15);
 
         Button btnAumentar = new Button("+");
+        btnAumentar.setStyle("-fx-cursor: hand; -fx-background-color: #56D23D");
         btnAumentar.setMinWidth(30);
         btnAumentar.setPrefWidth(30);
 
         Button btnDisminuir = new Button("-");
+        btnDisminuir.setStyle("-fx-cursor: hand; -fx-background-color: #FA3C3C");
         btnDisminuir.setMinWidth(30);
         btnDisminuir.setPrefWidth(30);
 
@@ -182,28 +390,37 @@ public class PaginaPrincipalControlador implements Initializable {
         iconoBorrar.setFitHeight(20);
         Button btnBorrar = new Button();
         btnBorrar.setGraphic(iconoBorrar);
-        btnBorrar.setStyle("-fx-background-color: transparent;");
+        btnBorrar.setStyle("-fx-background-color: transparent;-fx-cursor: hand");
 
         // Eventos
         btnAumentar.setOnAction(e -> {
             int cantidad = Integer.parseInt(lblCantidad.getText()) + 1;
             lblCantidad.setText(String.valueOf(cantidad));
-            actualizarTotal(); // Si tienes este método
+            actualizarCantidadCarrito();
+            actualizarTotales();
+            
         });
 
         btnDisminuir.setOnAction(e -> {
             int cantidad = Integer.parseInt(lblCantidad.getText()) - 1;
             if (cantidad <= 0) {
                 contenedorCarrito.getChildren().remove(contenedor);
+                actualizarCantidadCarrito();
+                actualizarTotales();
+
             } else {
                 lblCantidad.setText(String.valueOf(cantidad));
+                actualizarCantidadCarrito();
+                actualizarTotales();
             }
-            actualizarTotal(); // Si tienes este método
+            
         });
 
         btnBorrar.setOnAction(e -> {
             contenedorCarrito.getChildren().remove(contenedor);
-            actualizarTotal(); // Si tienes este método
+            actualizarCantidadCarrito();
+            actualizarTotales();
+            
         });
 
         controles.getChildren().addAll(lblTextoCantidad, lblCantidad, btnAumentar, btnDisminuir, btnBorrar);
@@ -211,19 +428,100 @@ public class PaginaPrincipalControlador implements Initializable {
         HBox.setHgrow(infoProducto, Priority.ALWAYS);
 
         contenedor.getChildren().addAll(imagen, infoProducto, controles);
-        contenedorCarrito.getChildren().add(contenedor);
+        contenedorCarrito.getChildren().add(contenedor);   
 
-        actualizarTotal(); // Si tienes este método
+        listaCarrito.agregarProducto(producto);
+        actualizarTotales();
     }
 
+    
     @FXML
     private void agregarAlCarritoProducto1(ActionEvent event) {
         agregarProductoAlCarrito(producto1);
+        actualizarCantidadCarrito();
     }
     
     @FXML
     private void agregarAlCarritoProducto2(ActionEvent event) {
         agregarProductoAlCarrito(producto2);
+        actualizarCantidadCarrito();
     }
+    
+    @FXML
+    private void agregarAlCarritoProducto3(ActionEvent event) {
+        agregarProductoAlCarrito(producto3);
+        actualizarCantidadCarrito();
+    }
+    
+    @FXML
+    private void agregarAlCarritoProducto4(ActionEvent event) {
+        agregarProductoAlCarrito(producto4);
+        actualizarCantidadCarrito();
+    }
+    
+    @FXML
+    private void agregarAlCarritoProducto5(ActionEvent event) {
+        agregarProductoAlCarrito(producto5);
+        actualizarCantidadCarrito();
+    }
+    
+    @FXML
+    private void agregarAlCarritoProducto6(ActionEvent event) {
+        agregarProductoAlCarrito(producto6);
+        actualizarCantidadCarrito();
+    }
+    
+    @FXML
+    private void agregarAlCarritoProducto7(ActionEvent event) {
+        agregarProductoAlCarrito(producto7);
+        actualizarCantidadCarrito();
+    }
+    
+    @FXML
+    private void agregarAlCarritoProducto8(ActionEvent event) {
+        agregarProductoAlCarrito(producto8);
+        actualizarCantidadCarrito();
+    }
+    
+    @FXML
+    private void agregarAlCarritoProducto9(ActionEvent event) {
+        agregarProductoAlCarrito(producto9);
+        actualizarCantidadCarrito();
+    }
+    
+    @FXML
+    private void agregarAlCarritoProducto10(ActionEvent event) {
+        agregarProductoAlCarrito(producto10);
+        actualizarCantidadCarrito();
+    }
+
+    private void actualizarCantidadCarrito() {
+        int total = 0;
+        for (Node node : contenedorCarrito.getChildren()) {
+            if (node instanceof HBox) {
+                HBox item = (HBox) node;
+                HBox controles = (HBox) item.getChildren().get(2); // donde están los botones y la cantidad
+                Label lblCantidad = (Label) controles.getChildren().get(1); // el número
+                total += Integer.parseInt(lblCantidad.getText());
+            }
+        }
+        lblCantidadCarrito.setText(String.valueOf(total));
+    }
+    
+    @FXML
+    private void vaciarCarrito(MouseEvent event) {
+        // Eliminar todos los productos de la lista lógica
+        listaCarrito.vaciarCarrito();
+
+        // Eliminar todos los elementos visuales del contenedor
+        contenedorCarrito.getChildren().clear();
+
+        // Actualizar etiquetas de cantidad y totales
+        lblCantidadCarrito.setText("0");
+        lblSubtotal.setText("$0");
+        lblDescuento.setText("$0");
+        lblTotal.setText("$0");
+    }
+
 
 }

@@ -8,13 +8,13 @@ package Modelo;
  *
  * @author santi
  */
-public class NodoDoble {
+public class NodoDoble<T> {
     
-    public Producto dato;
+    public T dato;
     public NodoDoble sig;
     public NodoDoble ant;
 
-    public NodoDoble(Producto dato) {
+    public NodoDoble(T dato) {
         this.dato = dato;
         this.sig = null;
         this.ant = null;

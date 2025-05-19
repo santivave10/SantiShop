@@ -118,5 +118,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 
 .opacidad{
     -fx-opacity: 0.5;
-    
+}
+
+.manoImagen{
+    -fx-cursor: hand;
 }
