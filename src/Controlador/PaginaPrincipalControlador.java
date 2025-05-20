@@ -6,6 +6,9 @@ package Controlador;
 
 import Modelo.Producto;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,9 +98,11 @@ public class PaginaPrincipalControlador implements Initializable {
     @FXML private Label lblMarca10;
     @FXML private ComboBox<String> comboFiltro;
     @FXML private Pane panelCarrito;
+    @FXML private Pane panelFavoritos;
     @FXML private Pane panelOpciones;
     @FXML private Pane opacidad;
     @FXML private VBox contenedorCarrito;
+    @FXML private VBox contenedorFavoritos;
     @FXML private Label lblCantidadCarrito;
     @FXML private Label lblSubtotal;
     @FXML private Label lblDescuento;
@@ -116,6 +121,10 @@ public class PaginaPrincipalControlador implements Initializable {
 
     
     private ListaProductos listaCarrito = new ListaProductos();
+    // Declarar un mapa para rastrear los productos en favoritos
+    private Map<String, Boolean> productosEnFavoritos = new HashMap<>();
+    private Map<String, ImageView> iconosFavoritos = new HashMap<>();
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboFiltro.getItems().addAll("Precio Mayor", "Precio Menor", "Descuento");  
@@ -290,7 +299,13 @@ public class PaginaPrincipalControlador implements Initializable {
     }
     
     @FXML
-    private void volverCarrito(MouseEvent event){
+    private void volver(MouseEvent event){
+    volverCarrito();
+    volverFavoritos();
+    }
+    
+    @FXML
+    private void volverCarrito(){
         panelCarrito.setVisible(false);
         panelCarrito.setManaged(false);
         opacidad.setVisible(false);
@@ -448,7 +463,7 @@ public class PaginaPrincipalControlador implements Initializable {
     }
 
     
-    @FXML
+    @FXML 
     private void agregarAlCarritoProducto1(ActionEvent event) {
         agregarProductoAlCarrito(producto1);
         actualizarCantidadCarrito();
@@ -822,4 +837,210 @@ private void actualizarVisualizacionProductos() {
         panelOpciones.setVisible(false);
         panelOpciones.setManaged(false);   
     }
+    
+    @FXML
+    private void mostrarFavoritos(MouseEvent event) {
+        panelOpciones.setVisible(false);
+        panelOpciones.setManaged(false); 
+        panelFavoritos.setVisible(true);
+        panelFavoritos.setManaged(true); 
+        opacidad.setVisible(true);
+        opacidad.setManaged(true);
+        opacidad.setOpacity(0.5);
+    }
+    
+    @FXML
+    private void volverFavoritos(){
+        panelFavoritos.setVisible(false);
+        panelFavoritos.setManaged(false);
+        opacidad.setVisible(false);
+        opacidad.setManaged(false);
+    }
+    
+    
+  private void agregarProductoAFavoritos(Producto producto) {
+    // Buscar si el producto ya existe en favoritos
+    for (Node node : contenedorFavoritos.getChildren()) {
+        if (node instanceof HBox) {
+            HBox item = (HBox) node;
+            VBox infoBox = (VBox) item.getChildren().get(1);
+            Label nameLabel = (Label) infoBox.getChildren().get(0);
+
+            if (nameLabel.getText().equals(producto.getNombre())) {
+                // El producto ya existe en favoritos, mostramos mensaje o no hacemos nada
+                // Opcional: mostrar alerta de que ya está en favoritos
+                return; // Terminar la función aquí
+            }
+        }
+    }
+    // Si llegamos aquí, el producto no existe en favoritos, añadimos uno nuevo
+    HBox contenedor = new HBox(8);
+    contenedor.setAlignment(Pos.CENTER_LEFT);
+    contenedor.setPadding(new Insets(10));
+    contenedor.setStyle("-fx-background-color: white; -fx-border-color: lightgray;");
+    contenedor.setPrefWidth(397);
+
+    // Imagen del producto
+    ImageView imagen = new ImageView(new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + producto.getImagenUrl())));
+    imagen.setFitWidth(50);
+    imagen.setFitHeight(50);
+
+    // Información del producto
+    VBox infoProducto = new VBox(5);
+    infoProducto.setPrefWidth(250);
+    infoProducto.setMinWidth(150);
+
+    Label lblNombre = new Label(producto.getNombre());
+    lblNombre.setStyle("-fx-font-weight: bold;");
+    lblNombre.setWrapText(true);
+
+    // Mostrar el precio con descuento si existe
+    Label lblPrecio = new Label("$" + String.format("%,.0f", producto.getPrecio() * (1 - producto.getDescuento())));
+    
+    // Si tiene descuento, mostrar el precio original tachado
+    if (producto.getDescuento() > 0) {
+        Label lblPrecioOriginal = new Label("$" + String.format("%,.0f", producto.getPrecio()));
+        lblPrecioOriginal.setStyle("-fx-text-fill: gray; -fx-strikethrough: true;");
+        infoProducto.getChildren().addAll(lblNombre, lblPrecioOriginal, lblPrecio);
+    } else {
+        infoProducto.getChildren().addAll(lblNombre, lblPrecio);
+    }
+
+    // Botón para eliminar de favoritos
+    HBox controles = new HBox(5);
+    controles.setAlignment(Pos.CENTER_RIGHT);
+    HBox.setHgrow(controles, Priority.ALWAYS);
+
+    // Botón para eliminar de favoritos con ícono
+    ImageView iconoEliminar = new ImageView(new Image(getClass().getResourceAsStream("/Vista/Imagenes/borrarindividual.png")));
+    iconoEliminar.setFitWidth(20);
+    iconoEliminar.setFitHeight(20);
+    
+    Button btnEliminar = new Button();
+    btnEliminar.setGraphic(iconoEliminar);
+    btnEliminar.setStyle("-fx-background-color: transparent; -fx-cursor: hand;");
+
+    // Evento para eliminar de favoritos
+    btnEliminar.setOnAction(e -> {
+    contenedorFavoritos.getChildren().remove(contenedor);
+
+    // Cambiar el estado en el mapa
+    productosEnFavoritos.put(producto.getNombre(), false);
+
+    // Cambiar la imagen del producto, si está registrada
+    ImageView imgFavorito = iconosFavoritos.get(producto.getNombre());
+    if (imgFavorito != null) {
+        imgFavorito.setImage(new Image(getClass().getResourceAsStream("/Vista/Imagenes/favoritos.png")));
+    }
+});
+
+
+    controles.getChildren().add(btnEliminar);
+    HBox.setHgrow(infoProducto, Priority.ALWAYS);
+
+    contenedor.getChildren().addAll(imagen, infoProducto, controles);
+    contenedorFavoritos.getChildren().add(contenedor);   
+}
+  
+
+// Método que se llama cuando se hace clic en el botón de favorito
+// Este método debes asignarlo al evento "On Mouse Clicked" en el SceneBuilder
+@FXML
+private void onFavoritoClicked(MouseEvent event) {
+    // Obtener la fuente del evento (la ImageView en la que se hizo clic)
+    ImageView imgFavorito = (ImageView) event.getSource();
+    
+    
+    // Determinar qué producto corresponde a esta ImageView
+    Producto productoSeleccionado = obtenerProductoPorImageView(imgFavorito);
+    iconosFavoritos.put(productoSeleccionado.getNombre(), imgFavorito);
+    
+    // Si no se pudo determinar el producto, salir
+    if (productoSeleccionado == null) return;
+    
+    // Verificar si el producto ya está en favoritos
+    boolean estaEnFavoritos = productosEnFavoritos.getOrDefault(productoSeleccionado.getNombre(), false);
+    
+    if (estaEnFavoritos) {
+        // Si ya está en favoritos, eliminarlo
+        eliminarProductoDeFavoritos(productoSeleccionado);
+        // Cambiar imagen a "favorito.png"
+        imgFavorito.setImage(new Image(getClass().getResourceAsStream("/Vista/Imagenes/favoritos.png")));
+        // Actualizar estado
+        productosEnFavoritos.put(productoSeleccionado.getNombre(), false);
+    } else {
+        // Si no está en favoritos, agregarlo
+        agregarProductoAFavoritos(productoSeleccionado);
+        // Cambiar imagen a "favoritoAgregado.png"
+        imgFavorito.setImage(new Image(getClass().getResourceAsStream("/Vista/Imagenes/favoritoAgregado.png")));
+        // Actualizar estado
+        productosEnFavoritos.put(productoSeleccionado.getNombre(), true);
+    }
+}
+
+// Determinar qué producto corresponde a la ImageView en la que se hizo clic
+private Producto obtenerProductoPorImageView(ImageView imgFavorito) {
+    // Obtener el ID de la ImageView para identificar qué producto es
+    String id = imgFavorito.getId();
+    
+    // Según el id de la ImageView, devolvemos el producto correspondiente
+    if (id.equals("imgFavorito1")) return producto1;
+    if (id.equals("imgFavorito2")) return producto2;
+    if (id.equals("imgFavorito3")) return producto3;
+    if (id.equals("imgFavorito4")) return producto4;
+    if (id.equals("imgFavorito5")) return producto5;
+    if (id.equals("imgFavorito6")) return producto6;
+    if (id.equals("imgFavorito7")) return producto7;
+    if (id.equals("imgFavorito8")) return producto8;
+    if (id.equals("imgFavorito9")) return producto9;
+    if (id.equals("imgFavorito10")) return producto10;
+    
+    // Si no coincide con ninguno, puedes intentar otro enfoque
+    // Por ejemplo, revisar el padre del ImageView para identificar el contenedor
+    
+    // Si todo falla, devolver null
+    System.out.println("No se pudo determinar el producto para la ImageView: " + id);
+    return null;
+}
+
+// Eliminar un producto de la lista de favoritos
+private void eliminarProductoDeFavoritos(Producto producto) {
+    // Buscar y eliminar el producto de la vista de favoritos
+    for (Node node : contenedorFavoritos.getChildren()) {
+        if (node instanceof HBox) {
+            HBox item = (HBox) node;
+            // Verificar que hay al menos 2 elementos en el HBox
+            if (item.getChildren().size() >= 2) {
+                VBox infoBox = (VBox) item.getChildren().get(1);
+                // Verificar que hay elementos en el VBox
+                if (!infoBox.getChildren().isEmpty()) {
+                    Label nameLabel = (Label) infoBox.getChildren().get(0);
+                    
+                    if (nameLabel.getText().equals(producto.getNombre())) {
+                        // Encontramos el producto, lo eliminamos
+                        contenedorFavoritos.getChildren().remove(node);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+}
+    @FXML
+    private void vaciarFavoritos(MouseEvent event) {
+        // 1. Vaciar visualmente
+        contenedorFavoritos.getChildren().clear();
+
+        // 2. Cambiar estado en el Map
+        for (String nombreProducto : productosEnFavoritos.keySet()) {
+            productosEnFavoritos.put(nombreProducto, false);
+
+            // 3. Cambiar la imagen si está registrada
+            ImageView img = iconosFavoritos.get(nombreProducto);
+            if (img != null) {
+                img.setImage(new Image(getClass().getResourceAsStream("/Vista/Imagenes/favoritos.png")));
+            }
+        }
+    }
+
 }
