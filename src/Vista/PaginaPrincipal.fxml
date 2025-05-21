@@ -131,12 +131,12 @@
                               <Label fx:id="lblMarca1" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="ASUS" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto1" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos1" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito1" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito1" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -159,12 +159,12 @@
                               <Label fx:id="lblMarca2" layoutX="673.0" layoutY="125.0" styleClass="LetraMarca" text="HP" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto2" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos2" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito2" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito2" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -190,12 +190,12 @@
                               <Label fx:id="lblMarca3" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="SONY" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto3" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos3" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito3" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito3" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -218,12 +218,12 @@
                               <Label fx:id="lblMarca4" layoutX="651.0" layoutY="125.0" styleClass="LetraMarca" text="IMPERIAL" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto4" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos4" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito4" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito4" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -252,12 +252,12 @@
                               <Label fx:id="lblMarca5" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto5" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos5" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito5" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito5" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -283,12 +283,12 @@
                               <Label fx:id="lblMarca6" layoutX="648.0" layoutY="125.0" styleClass="LetraMarca" text="SAMSUNG" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto6" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos6" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito6" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito6" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -314,12 +314,12 @@
                               <Label fx:id="lblMarca7" layoutX="648.0" layoutY="125.0" styleClass="LetraMarca" text="SAMSUNG" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto7" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos7" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito7" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito7" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -345,12 +345,12 @@
                               <Label fx:id="lblMarca8" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="EPSON" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto8" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos8" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito8" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito8" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -376,12 +376,12 @@
                               <Label fx:id="lblMarca9" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto9" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos9" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito9" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito9" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -407,12 +407,12 @@
                               <Label fx:id="lblMarca10" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
                               <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto10" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
-                              <ImageView fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgDeseos10" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
-                                    <Image url="@Imagenes/Lista%20deseos.png" />
+                                    <Image url="@Imagenes/Listadeseos.png" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="imgFavorito10" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#onFavoritoClicked" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="imgFavorito10" fitHeight="28.0" fitWidth="33.0" layoutX="733.0" layoutY="58.0" onMouseClicked="#imagenFavoritos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
                                     <Image url="@Imagenes/favoritos.png" />
                                  </image>
@@ -493,10 +493,38 @@
             <Line endY="101.3332748413086" layoutY="362.0" startX="412.00006103515625" startY="102.0" />
          </children>
       </Pane>
+      <Pane fx:id="panelListaDeseos" layoutX="600.0" prefHeight="554.0" prefWidth="411.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Line endY="101.3332748413086" layoutY="38.0" startX="412.00006103515625" startY="102.0" />
+            <Label layoutX="156.0" layoutY="14.0" prefHeight="102.0" prefWidth="214.0" styleClass="LetraTitulos" text="Lista de deseos" wrapText="true" />
+            <Circle fill="WHITE" layoutX="73.0" layoutY="69.0" radius="54.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="33.0" layoutY="35.0" onMouseClicked="#mostrarCarrito" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/ListadeseosAgregado.png" />
+               </image>
+            </ImageView>
+            <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutY="140.0" prefHeight="324.0" prefWidth="412.0">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <VBox fx:id="contenedorListaDeseos" layoutX="-1.0" layoutY="-8.0" prefHeight="100.0" prefWidth="397.0" AnchorPane.leftAnchor="-0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <ImageView fitHeight="54.0" fitWidth="55.0" layoutX="293.0" layoutY="488.0" onMouseClicked="#vaciarListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
+               <image>
+                  <Image url="@Imagenes/borrargrupo.png" />
+               </image>
+            </ImageView>
+            <Line endY="101.3332748413086" layoutY="362.0" startX="412.00006103515625" startY="102.0" />
+            <Button layoutX="58.0" layoutY="491.0" mnemonicParsing="false" onAction="#agregarTodosAlCarrito" prefHeight="48.0" prefWidth="196.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
+         </children>
+      </Pane>
       <Pane fx:id="panelOpciones" layoutX="668.0" layoutY="150.0" prefHeight="165.0" prefWidth="231.0" style="-fx-background-color: white;" visible="false">
          <children>
             <Label layoutX="70.0" layoutY="10.0" onMouseClicked="#mostrarFavoritos" styleClass="tipoLetraVinculosPagPrincipal" text="Favoritos" />
-            <Label layoutX="38.0" layoutY="50.0" styleClass="tipoLetraVinculosPagPrincipal" text="Lista de deseos" />
+            <Label layoutX="38.0" layoutY="50.0" onMouseClicked="#mostrarListaDeseos" styleClass="tipoLetraVinculosPagPrincipal" text="Lista de deseos" />
             <Label layoutX="10.0" layoutY="90.0" styleClass="tipoLetraVinculosPagPrincipal" text="Historial de compras" />
             <Label layoutX="64.0" layoutY="130.0" styleClass="tipoLetraVinculosPagPrincipal" text="Mi cuenta" />
          </children>
