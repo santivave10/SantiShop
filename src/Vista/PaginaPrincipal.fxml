@@ -129,7 +129,7 @@
                               <Label fx:id="lblPrecioDescuento1" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3.900.000" />
                               <Label fx:id="lblPorcentaje1" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
                               <Label fx:id="lblMarca1" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="ASUS" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto1" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto1" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos1" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -157,7 +157,7 @@
                               <Label fx:id="lblPrecioDescuento2" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3,277,500 " />
                               <Label fx:id="lblPorcentaje2" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
                               <Label fx:id="lblMarca2" layoutX="673.0" layoutY="125.0" styleClass="LetraMarca" text="HP" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto2" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto2" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos2" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -188,7 +188,7 @@
                               <Label fx:id="lblPrecioDescuento3" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3.488.000 " />
                               <Label fx:id="lblPorcentaje3" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="20% OFF" />
                               <Label fx:id="lblMarca3" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="SONY" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto3" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto3" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos3" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -216,7 +216,7 @@
                               <Line endX="-96.77783203125" endY="53.00001525878906" layoutX="254.0" layoutY="97.0" startX="-96.77780151367188" startY="-97.99996948242188" stroke="#acacac" />
                               <Label fx:id="lblPrecioDescuento4" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$100.000" />
                               <Label fx:id="lblMarca4" layoutX="651.0" layoutY="125.0" styleClass="LetraMarca" text="IMPERIAL" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto4" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto4" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos4" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -250,7 +250,7 @@
                               <Label fx:id="lblPrecioDescuento5" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$5,544,000 " />
                               <Label fx:id="lblPorcentaje5" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="40% OFF" />
                               <Label fx:id="lblMarca5" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto5" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto5" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos5" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -281,7 +281,7 @@
                               <Label fx:id="lblPrecioDescuento6" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$5,152,000  " />
                               <Label fx:id="lblPorcentaje6" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="30% OFF" />
                               <Label fx:id="lblMarca6" layoutX="648.0" layoutY="125.0" styleClass="LetraMarca" text="SAMSUNG" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto6" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto6" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos6" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -312,7 +312,7 @@
                               <Label fx:id="lblPrecioDescuento7" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$7,623,000  " />
                               <Label fx:id="lblPorcentaje7" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="10% OFF" />
                               <Label fx:id="lblMarca7" layoutX="648.0" layoutY="125.0" styleClass="LetraMarca" text="SAMSUNG" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto7" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto7" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos7" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -343,7 +343,7 @@
                               <Label fx:id="lblPrecioDescuento8" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$4,184,000 " />
                               <Label fx:id="lblPorcentaje8" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="20% OFF" />
                               <Label fx:id="lblMarca8" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="EPSON" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto8" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto8" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos8" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -374,7 +374,7 @@
                               <Label fx:id="lblPrecioDescuento9" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3,290,000  " />
                               <Label fx:id="lblPorcentaje9" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="50% OFF" />
                               <Label fx:id="lblMarca9" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto9" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto9" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos9" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -405,7 +405,7 @@
                               <Label fx:id="lblPrecioDescuento10" layoutX="166.0" layoutY="99.0" styleClass="LetraPrecioDescuento" text="\$3,277,500  " />
                               <Label fx:id="lblPorcentaje10" layoutX="321.0" layoutY="106.0" styleClass="LetraPorcentaje" text="25% OFF" />
                               <Label fx:id="lblMarca10" layoutX="660.0" layoutY="125.0" styleClass="LetraMarca" text="APPLE" />
-                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
+                              <Button layoutX="434.0" layoutY="56.0" mnemonicParsing="false" onAction="#comprarProducto10" prefHeight="35.0" prefWidth="183.0" styleClass="botonComprar" text="Comprar ahora" />
                               <Button layoutX="434.0" layoutY="98.0" mnemonicParsing="false" onAction="#agregarAlCarritoProducto10" prefHeight="35.0" prefWidth="183.0" styleClass="botonAddCarrito" text="Agregar al carrito" />
                               <ImageView fx:id="imgDeseos10" fitHeight="28.0" fitWidth="33.0" layoutX="732.0" layoutY="95.0" onMouseClicked="#imagenListaDeseos" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                                  <image>
@@ -455,7 +455,7 @@
             <Label layoutX="8.0" layoutY="406.0" styleClass="LetraNombreProducto" text="Subtotal:" />
             <Label layoutX="8.0" layoutY="442.0" styleClass="LetraNombreProducto" text="Descuento:" />
             <Label layoutX="8.0" layoutY="477.0" styleClass="LetraNombreProducto" text="Total:" />
-            <Button layoutX="164.0" layoutY="511.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="133.0" styleClass="botonComprar" text="Comprar" />
+            <Button fx:id="btnComprarTodo" layoutX="164.0" layoutY="511.0" mnemonicParsing="false" onAction="#comprarCarritoCompleto" prefHeight="35.0" prefWidth="133.0" styleClass="botonComprar" text="Comprar" />
             <ImageView fitHeight="43.0" fitWidth="41.0" layoutX="337.0" layoutY="505.0" onMouseClicked="#vaciarCarrito" pickOnBounds="true" preserveRatio="true" styleClass="manoImagen">
                <image>
                   <Image url="@Imagenes/borrargrupo.png" />

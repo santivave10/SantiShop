@@ -6,6 +6,8 @@ package Controlador;
 
 import Modelo.NodoDoble;
 import Modelo.Producto;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -63,5 +65,18 @@ public class ListaProductos {
         cab = null;
         cola = null;
     }
+    
+public List<Producto> getProductos() {
+    List<Producto> lista = new ArrayList<>();
+    NodoDoble<Producto> actual = cab;
+
+    while (actual != null) {
+        lista.add(actual.dato);
+        actual = actual.sig;
+    }
+
+    return lista;
+}
+
 
 }

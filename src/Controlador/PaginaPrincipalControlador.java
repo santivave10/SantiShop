@@ -5,6 +5,7 @@
 package Controlador;
 
 import Modelo.Producto;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,11 +14,14 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import static javafx.scene.Cursor.cursor;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -29,6 +33,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -121,7 +126,6 @@ public class PaginaPrincipalControlador implements Initializable {
     private Producto producto8;
     private Producto producto9;
     private Producto producto10;
-
     
     private ListaProductos listaCarrito = new ListaProductos();
     // Declarar un mapa para rastrear los productos en favoritos
@@ -1299,19 +1303,142 @@ private void eliminarProductoDeListaDeseos(Producto producto) {
 
 // Método auxiliar para buscar un producto por su nombre
 private Producto buscarProductoPorNombre(String nombre) {
-    // Verificar cada producto
-    if (producto1 != null && producto1.getNombre().equals(nombre)) return producto1;
-    if (producto2 != null && producto2.getNombre().equals(nombre)) return producto2;
-    if (producto3 != null && producto3.getNombre().equals(nombre)) return producto3;
-    if (producto4 != null && producto4.getNombre().equals(nombre)) return producto4;
-    if (producto5 != null && producto5.getNombre().equals(nombre)) return producto5;
-    if (producto6 != null && producto6.getNombre().equals(nombre)) return producto6;
-    if (producto7 != null && producto7.getNombre().equals(nombre)) return producto7;
-    if (producto8 != null && producto8.getNombre().equals(nombre)) return producto8;
-    if (producto9 != null && producto9.getNombre().equals(nombre)) return producto9;
-    if (producto10 != null && producto10.getNombre().equals(nombre)) return producto10;
-    
-    System.out.println("No se encontró un producto con el nombre: " + nombre);
-    return null;
+        // Verificar cada producto
+        if (producto1 != null && producto1.getNombre().equals(nombre)) return producto1;
+        if (producto2 != null && producto2.getNombre().equals(nombre)) return producto2;
+        if (producto3 != null && producto3.getNombre().equals(nombre)) return producto3;
+        if (producto4 != null && producto4.getNombre().equals(nombre)) return producto4;
+        if (producto5 != null && producto5.getNombre().equals(nombre)) return producto5;
+        if (producto6 != null && producto6.getNombre().equals(nombre)) return producto6;
+        if (producto7 != null && producto7.getNombre().equals(nombre)) return producto7;
+        if (producto8 != null && producto8.getNombre().equals(nombre)) return producto8;
+        if (producto9 != null && producto9.getNombre().equals(nombre)) return producto9;
+        if (producto10 != null && producto10.getNombre().equals(nombre)) return producto10;
+
+        System.out.println("No se encontró un producto con el nombre: " + nombre);
+        return null;
+    }
+
+    @FXML
+    private void comprarProducto(Producto producto) {
+    try {
+        // Calcular precio con descuento si aplica
+        double precioFinal = producto.getPrecio() * (1 - producto.getDescuento());
+
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PaginaPagos.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.setTitle("Pagos");
+        stage.setResizable(false);
+        stage.centerOnScreen();
+        stage.show();
+
+        // Obtener el controlador y pasar el total
+        PaginaPagosControlador pagosControlador = loader.getController();
+        pagosControlador.setTotalPagar(precioFinal);
+
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.err.println("Error al cargar la página de pagos: " + e.getMessage());
+    }
 }
+
+    @FXML
+    private void comprarProducto1(ActionEvent event) {
+        comprarProducto(producto1);
+    }
+    @FXML
+    private void comprarProducto2(ActionEvent event) {
+        comprarProducto(producto2);
+    }
+    @FXML
+    private void comprarProducto3(ActionEvent event) {
+        comprarProducto(producto3);
+    }
+    @FXML
+    private void comprarProducto4(ActionEvent event) {
+        comprarProducto(producto4);
+    }
+    @FXML
+    private void comprarProducto5(ActionEvent event) {
+        comprarProducto(producto5);
+    }
+    @FXML
+    private void comprarProducto6(ActionEvent event) {
+        comprarProducto(producto6);
+    }
+    @FXML
+    private void comprarProducto7(ActionEvent event) {
+        comprarProducto(producto7);
+    }
+    @FXML
+    private void comprarProducto8(ActionEvent event) {
+        comprarProducto(producto8);
+    }
+    @FXML
+    private void comprarProducto9(ActionEvent event) {
+        comprarProducto(producto9);
+    }
+    @FXML
+    private void comprarProducto10(ActionEvent event) {
+        comprarProducto(producto10);
+    }
+    
+@FXML
+private void comprarCarritoCompleto(ActionEvent event) {
+    try {
+        double total = 0;
+
+        for (Node node : contenedorCarrito.getChildren()) {
+            if (node instanceof HBox) {
+                HBox item = (HBox) node;
+                VBox infoBox = (VBox) item.getChildren().get(1);
+                Label lblNombre = (Label) infoBox.getChildren().get(0);
+                Label lblPrecio = (Label) infoBox.getChildren().get(infoBox.getChildren().size() - 1);
+
+                HBox controles = (HBox) item.getChildren().get(2);
+                Label lblCantidad = (Label) controles.getChildren().get(1);
+
+                String nombre = lblNombre.getText();
+                int cantidad = Integer.parseInt(lblCantidad.getText());
+
+                // El precio debe venir del objeto Producto
+                Producto producto = buscarProductoPorNombre(nombre);
+                if (producto != null) {
+                    double precioConDescuento = producto.getPrecio() * (1 - producto.getDescuento());
+                    total += precioConDescuento * cantidad;
+                }
+            }
+        }
+
+        // Abrir ventana de pago
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/PaginaPagos.fxml"));
+        Parent root = loader.load();
+
+        PaginaPagosControlador pagosControlador = loader.getController();
+        pagosControlador.setTotalPagar(total);
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setTitle("Información de Pago");
+        stage.setScene(scene);
+        stage.show();
+
+        // Pasar total y bandera
+    pagosControlador.setTotalPagar(total);
+    pagosControlador.setEsCompraDesdeCarrito(true);
+
+    // Pasar método para vaciar carrito
+    pagosControlador.setCallbackVaciarCarrito(() -> {
+    listaCarrito.vaciarCarrito();
+    contenedorCarrito.getChildren().clear();
+});
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+
 }
