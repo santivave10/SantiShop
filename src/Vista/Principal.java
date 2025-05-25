@@ -26,7 +26,7 @@ public class Principal extends Application{
         Parent root = null;
         
          try { 
-                root = FXMLLoader.load(getClass().getResource("PaginaPrincipal.fxml"));
+                root = FXMLLoader.load(getClass().getResource("Login.fxml"));
          } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
          }

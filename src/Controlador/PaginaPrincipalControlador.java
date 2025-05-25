@@ -5,6 +5,8 @@
 package Controlador;
 
 import Modelo.Producto;
+import Modelo.Usuario;
+import Modelo.nodo;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,9 +24,11 @@ import static javafx.scene.Cursor.cursor;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -127,13 +131,42 @@ public class PaginaPrincipalControlador implements Initializable {
     private Producto producto9;
     private Producto producto10;
     
+    @FXML private Pane panelCuenta;
+    @FXML private TextField txtNombres;
+    @FXML private TextField txtApellidos;
+    @FXML private TextField txtSexo;
+    @FXML private TextField txtEdad;
+    @FXML private TextField txtPais;
+    @FXML private TextField txtDireccion;
+
+    @FXML private ImageView btnEditarNombre;
+    @FXML private ImageView btnEditarApellidos;
+    @FXML private ImageView btnEditarSexo;
+    @FXML private ImageView btnEditarEdad;
+    @FXML private ImageView btnEditarPais;
+    @FXML private ImageView btnEditarDireccion;
+
+    @FXML private Button btnGuardar;
+    @FXML private Button btnCancelar;
+    
+    
+    private String nombresOriginal;
+    private String apellidosOriginal;
+    private String sexoOriginal;
+    private String edadOriginal;
+    private String paisOriginal;
+    private String direccionOriginal;
+    
+    private Usuario usuarioActivo;
+    
+    
     private ListaProductos listaCarrito = new ListaProductos();
     // Declarar un mapa para rastrear los productos en favoritos
     private Map<String, Boolean> productosEnFavoritos = new HashMap<>();
     private Map<String, ImageView> iconosFavoritos = new HashMap<>();
     private Map<String, Boolean> productosEnListaDeseos = new HashMap<>();
     private Map<String, ImageView> iconosListaDeseos = new HashMap<>();
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         comboFiltro.getItems().addAll("Precio Mayor", "Precio Menor", "Descuento");  
@@ -312,6 +345,7 @@ public class PaginaPrincipalControlador implements Initializable {
     volverCarrito();
     volverFavoritos();
     volverListaDeseos();
+    volverCuenta();
     }
     
     @FXML
@@ -1439,6 +1473,158 @@ private void comprarCarritoCompleto(ActionEvent event) {
     } catch (IOException e) {
         e.printStackTrace();
     }
+}
+
+    public void setUsuarioActivo(Usuario usuario) {
+    System.out.println("setUsuarioActivo llamado con: " + (usuario != null ? usuario.getNombres() : "null"));
+    this.usuarioActivo = usuario;
+    mostrarDatosUsuario();
+}
+
+private void mostrarDatosUsuario() {
+    System.out.println("mostrarDatosUsuario llamado");
+    if (usuarioActivo == null) {
+        System.out.println("usuarioActivo es null!");
+        return;
+    }
+    
+    System.out.println("Mostrando datos de: " + usuarioActivo.getNombres());
+    txtNombres.setText(usuarioActivo.getNombres());
+    txtApellidos.setText(usuarioActivo.getApellidos());
+    txtSexo.setText(usuarioActivo.getSexo());
+    txtEdad.setText(String.valueOf(usuarioActivo.getEdad()));
+    txtPais.setText(usuarioActivo.getPais());
+    txtDireccion.setText(usuarioActivo.getDireccion());
+}
+    @FXML
+    private void mostrarCuenta(MouseEvent event) {
+        panelOpciones.setVisible(false);
+        panelOpciones.setManaged(false); 
+        panelCuenta.setVisible(true);
+        panelCuenta.setManaged(true); 
+        opacidad.setVisible(true);
+        opacidad.setManaged(true);
+        opacidad.setOpacity(0.5);
+        mostrarDatosUsuario();
+    }
+    
+    @FXML
+    private void volverCuenta(){
+        panelCuenta.setVisible(false);
+        panelCuenta.setManaged(false);
+        opacidad.setVisible(false);
+        opacidad.setManaged(false);
+    }
+
+
+private void habilitarCampo(TextField campo) {
+    campo.setEditable(true);
+    campo.requestFocus();
+}
+
+@FXML
+private void editarNombre(MouseEvent e) {
+    habilitarCampo(txtNombres);
+}
+
+@FXML
+private void editarApellidos(MouseEvent e) {
+    habilitarCampo(txtApellidos);
+}
+
+@FXML
+private void editarSexo(MouseEvent e) {
+    habilitarCampo(txtSexo);
+}
+
+@FXML
+private void editarEdad(MouseEvent e) {
+    habilitarCampo(txtEdad);
+}
+
+@FXML
+private void editarPais(MouseEvent e) {
+    habilitarCampo(txtPais);
+}
+
+@FXML
+private void editarDireccion(MouseEvent e) {
+    habilitarCampo(txtDireccion);
+}
+
+    @FXML
+private void guardarCambios(ActionEvent event) {
+    // Deshabilitar edición
+    txtNombres.setEditable(false);
+    txtApellidos.setEditable(false);
+    txtSexo.setEditable(false);
+    txtEdad.setEditable(false);
+    txtPais.setEditable(false);
+    txtDireccion.setEditable(false);
+    
+    // Actualizar los datos en el objeto Usuario
+    if (usuarioActivo != null) {
+        usuarioActivo.setNombre(txtNombres.getText());
+        usuarioActivo.setApellido(txtApellidos.getText());
+        usuarioActivo.setSexo(txtSexo.getText());
+        usuarioActivo.setEdad(txtEdad.getText());
+        usuarioActivo.setPais(txtPais.getText());
+        usuarioActivo.setDireccion(txtDireccion.getText());
+        
+        // IMPORTANTE: Actualizar en la lista enlazada de usuarios
+        // Buscar y actualizar el usuario en la lista enlazada
+        nodo<Usuario> actual = Controlador.RegisterControlador.listaUsuarios.cabeza;
+        while (actual != null) {
+            if (actual.dato.getUsuario().equals(usuarioActivo.getUsuario())) {
+                // Actualizar el usuario en el nodo
+                actual.dato = usuarioActivo;
+                break;
+            }
+            actual = actual.sig;
+        }
+    }
+    // Mostrar mensaje de confirmación
+    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+    alerta.setTitle("Información actualizada");
+    alerta.setHeaderText(null);
+    alerta.setContentText("Tu información fue actualizada correctamente.");
+    alerta.showAndWait();
+}
+
+@FXML
+private void cancelarCambios(ActionEvent event) {
+    // Restaurar los valores originales
+    if (usuarioActivo != null) {
+    
+        nombresOriginal = usuarioActivo.getNombres();
+        apellidosOriginal = usuarioActivo.getApellidos();
+        sexoOriginal = usuarioActivo.getSexo();
+        edadOriginal = usuarioActivo.getEdad();
+        paisOriginal = usuarioActivo.getPais();
+        direccionOriginal = usuarioActivo.getDireccion();
+        
+        txtNombres.setText(nombresOriginal);
+        txtApellidos.setText(apellidosOriginal);
+        txtSexo.setText(sexoOriginal);
+        txtEdad.setText(edadOriginal);
+        txtPais.setText(paisOriginal);
+        txtDireccion.setText(direccionOriginal);
+    }
+    
+    // Deshabilitar edición
+    txtNombres.setEditable(false);
+    txtApellidos.setEditable(false);
+    txtSexo.setEditable(false);
+    txtEdad.setEditable(false);
+    txtPais.setEditable(false);
+    txtDireccion.setEditable(false);
+    
+    // Mostrar mensaje de cancelación
+    Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+    alerta.setTitle("Cambios cancelados");
+    alerta.setHeaderText(null);
+    alerta.setContentText("Los cambios han sido cancelados.");
+    alerta.show();
 }
 
 }

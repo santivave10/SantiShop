@@ -64,11 +64,17 @@ public class LoginControlador implements Initializable{
     @FXML
     private PasswordField txtContrasena;
     
-    private void abrirPaginaPrincipal(ActionEvent event) {
+    private void abrirPaginaPrincipal(ActionEvent event, Usuario usuarioEncontrado) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/paginaPrincipal.fxml"));
             Parent root = loader.load();
 
+            // Obtener el controlador de la página principal
+            PaginaPrincipalControlador controladorPagina = loader.getController();
+         
+            // Pasar el usuario al controlador de la página principal
+            controladorPagina.setUsuarioActivo(usuarioEncontrado);
+            
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("SantiShop - Página Principal");
@@ -128,7 +134,7 @@ public class LoginControlador implements Initializable{
             PauseTransition pausa = new PauseTransition(Duration.seconds(2));
             pausa.setOnFinished(e -> {
             alerta.close(); // Cerramos la alerta
-            abrirPaginaPrincipal(event); // Llamamos método que abre la página principal
+            abrirPaginaPrincipal(event, usuarioEncontrado); // Llamamos método que abre la página principal
             });
             pausa.play();
         }

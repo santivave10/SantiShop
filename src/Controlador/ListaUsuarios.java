@@ -77,6 +77,5 @@ public class ListaUsuarios {
             actual = actual.sig;
         }
     }
-
    
 }

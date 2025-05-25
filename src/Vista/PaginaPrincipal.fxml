@@ -526,7 +526,64 @@
             <Label layoutX="70.0" layoutY="10.0" onMouseClicked="#mostrarFavoritos" styleClass="tipoLetraVinculosPagPrincipal" text="Favoritos" />
             <Label layoutX="38.0" layoutY="50.0" onMouseClicked="#mostrarListaDeseos" styleClass="tipoLetraVinculosPagPrincipal" text="Lista de deseos" />
             <Label layoutX="10.0" layoutY="90.0" styleClass="tipoLetraVinculosPagPrincipal" text="Historial de compras" />
-            <Label layoutX="64.0" layoutY="130.0" styleClass="tipoLetraVinculosPagPrincipal" text="Mi cuenta" />
+            <Label layoutX="64.0" layoutY="130.0" onMouseClicked="#mostrarCuenta" styleClass="tipoLetraVinculosPagPrincipal" text="Mi cuenta" />
+         </children>
+      </Pane>
+      <Pane fx:id="panelCuenta" layoutX="600.0" prefHeight="554.0" prefWidth="411.0" style="-fx-background-color: white;" visible="false">
+         <children>
+            <Line endY="101.3332748413086" layoutY="38.0" startX="412.00006103515625" startY="102.0" />
+            <Label layoutX="156.0" layoutY="14.0" prefHeight="102.0" prefWidth="214.0" styleClass="LetraTitulos" text="Mi cuenta" wrapText="true" />
+            <Circle fill="WHITE" layoutX="73.0" layoutY="69.0" radius="54.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fitHeight="73.0" fitWidth="80.0" layoutX="37.0" layoutY="32.0" onMouseClicked="#mostrarCarrito" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/Icono%20usuario.png" />
+               </image>
+            </ImageView>
+            <Line endY="101.3332748413086" layoutY="362.0" startX="412.00006103515625" startY="102.0" />
+            <Button fx:id="btnGuardar" layoutX="58.0" layoutY="491.0" mnemonicParsing="false" onAction="#guardarCambios" prefHeight="48.0" prefWidth="133.0" styleClass="botonComprar" text="Guardar" />
+            <Button fx:id="btnCancelar" layoutX="217.0" layoutY="492.0" mnemonicParsing="false" onAction="#cancelarCambios" prefHeight="48.0" prefWidth="133.0" styleClass="botonCancelar" text="Cancelar" />
+            <Label layoutX="15.0" layoutY="160.0" styleClass="LetraPrecioDescuento" text="Nombres" />
+            <Label layoutX="15.0" layoutY="210.0" styleClass="LetraPrecioDescuento" text="Apellidos" />
+            <Label layoutX="15.0" layoutY="260.0" styleClass="LetraPrecioDescuento" text="Sexo" />
+            <Label layoutX="15.0" layoutY="310.0" styleClass="LetraPrecioDescuento" text="Edad" />
+            <Label layoutX="15.0" layoutY="360.0" styleClass="LetraPrecioDescuento" text="Pais" />
+            <Label layoutX="15.0" layoutY="410.0" styleClass="LetraPrecioDescuento" text="Dirección" />
+            <TextField fx:id="txtNombres" editable="false" layoutX="170.0" layoutY="165.0" />
+            <TextField fx:id="txtApellidos" editable="false" layoutX="170.0" layoutY="212.0" />
+            <TextField fx:id="txtSexo" editable="false" layoutX="170.0" layoutY="261.0" />
+            <TextField fx:id="txtEdad" editable="false" layoutX="170.0" layoutY="311.0" />
+            <TextField fx:id="txtPais" editable="false" layoutX="170.0" layoutY="367.0" />
+            <TextField fx:id="txtDireccion" editable="false" layoutX="170.0" layoutY="412.0" />
+            <ImageView fx:id="btnEditarNombre" fitHeight="26.0" fitWidth="29.0" layoutX="355.0" layoutY="164.0" onMouseClicked="#editarNombre" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/editar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnEditarApellidos" fitHeight="26.0" fitWidth="29.0" layoutX="355.0" layoutY="212.0" onMouseClicked="#editarApellidos" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/editar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnEditarSexo" fitHeight="26.0" fitWidth="29.0" layoutX="355.0" layoutY="260.0" onMouseClicked="#editarSexo" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/editar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnEditarEdad" fitHeight="26.0" fitWidth="29.0" layoutX="355.0" layoutY="311.0" onMouseClicked="#editarEdad" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/editar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnEditarPais" fitHeight="26.0" fitWidth="29.0" layoutX="355.0" layoutY="365.0" onMouseClicked="#editarPais" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/editar.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="btnEditarDireccion" fitHeight="26.0" fitWidth="29.0" layoutX="355.0" layoutY="412.0" onMouseClicked="#editarDireccion" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Imagenes/editar.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Pane fx:id="opacidad" onMouseClicked="#volver" prefHeight="554.0" prefWidth="601.0" style="-fx-background-color: white;" visible="false" />
