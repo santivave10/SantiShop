@@ -4,7 +4,10 @@
  */
 package Controlador;
 
+import static Controlador.LoginControlador.cargarUsuariosDesdeArchivo;
 import Modelo.Usuario;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -19,6 +22,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -62,6 +66,7 @@ public class RegisterControlador implements Initializable{
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("SantiShop - Login");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/Vista/Imagenes/LOGO FONDO BLANCO SANTISHOP.png")));
             stage.setResizable(false);
             stage.centerOnScreen();
             stage.show();
@@ -144,6 +149,7 @@ public class RegisterControlador implements Initializable{
                 // Se crea el usuario
                 Usuario nuevoUsuario = new Usuario(usuario, contrasena, nombres, apellidos, sexo, edad, pais);
                 listaUsuarios.agregarUsuario(nuevoUsuario);
+                guardarUsuarioEnArchivo(nuevoUsuario);
 
                 Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                 alerta.setTitle("Registro Exitoso");
@@ -161,4 +167,23 @@ public class RegisterControlador implements Initializable{
             }
         }
     }
+    
+    private void guardarUsuarioEnArchivo(Usuario usuario) {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt", true))) {
+        // Guardar datos separados por punto y coma
+        writer.write(usuario.getUsuario() + ";" +
+                     usuario.getContrasena() + ";" +
+                     usuario.getNombres() + ";" +
+                     usuario.getApellidos() + ";" +
+                     usuario.getSexo() + ";" +
+                     usuario.getEdad() + ";" +
+                     usuario.getPais() + ";" +
+                     (usuario.getDireccion() != null ? usuario.getDireccion() : ""));
+        writer.newLine();
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar el usuario.");
+    }
+}
+
 }

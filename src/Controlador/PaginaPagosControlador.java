@@ -4,7 +4,11 @@
  */
 package Controlador;
 
+import Modelo.HistorialCompra;
+import Modelo.Producto;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.animation.PauseTransition;
 import javafx.fxml.FXML;
@@ -39,8 +43,11 @@ public class PaginaPagosControlador implements Initializable {
     private Button btnPagar;
     @FXML
     private Button btnCancelar;
-    @Override
     
+    private List<Producto> productosComprados = new ArrayList<>();
+    private Runnable callbackAgregarHistorial;
+    
+    @Override 
     public void initialize(URL url, ResourceBundle rb) {
         comboBanco.getItems().addAll("Bancolombia", "Davivienda", "Nequi");
         comboTipoCuenta.getItems().addAll("Ahorros", "Corriente", "Cuenta Digital");
@@ -56,7 +63,8 @@ public class PaginaPagosControlador implements Initializable {
 public void setCallbackVaciarCarrito(Runnable callback) {
     this.callbackVaciarCarrito = callback;
 }
-   @FXML
+   
+    @FXML
     private void pagar() {
     String banco = comboBanco.getValue();
     String numeroCuenta = txtNumeroCuenta.getText();
@@ -77,6 +85,7 @@ public void setCallbackVaciarCarrito(Runnable callback) {
         alerta.showAndWait();
         return;
     }
+    
     // Mostrar alerta de "Procesando pago..."
     Alert procesando = new Alert(Alert.AlertType.INFORMATION);
     procesando.setTitle("Pago");
@@ -87,6 +96,12 @@ public void setCallbackVaciarCarrito(Runnable callback) {
     PauseTransition espera = new PauseTransition(Duration.seconds(3));
     espera.setOnFinished(e -> {
         procesando.close();
+        
+          // *** NUEVO: Agregar al historial antes de mostrar éxito ***
+        if (callbackAgregarHistorial != null) {
+            callbackAgregarHistorial.run();
+        }
+        
         Alert exito = new Alert(Alert.AlertType.INFORMATION);
         exito.setTitle("Compra exitosa");
         exito.setHeaderText(null);
@@ -102,13 +117,14 @@ public void setCallbackVaciarCarrito(Runnable callback) {
             // Volver al principal (asegúrate de tener acceso)
             // Y vaciar el carrito si fue una compra desde ahí
             if (esCompraDesdeCarrito && callbackVaciarCarrito != null) {
-            callbackVaciarCarrito.run();
+            callbackVaciarCarrito.run();           
 }
         });
         volver.play();
     });
     espera.play();
 }
+
 
     
     @FXML
@@ -127,4 +143,19 @@ public void setCallbackVaciarCarrito(Runnable callback) {
     String precioFormateado = String.format("%,.0f", precioFinal);
     lblTotal.setText("Total a pagar: $" + precioFormateado);
 }
+    
+    public void setProductoComprado(Producto producto) {
+    this.productosComprados.clear();
+    this.productosComprados.add(producto);
+}
+
+    // Método para recibir lista de productos del carrito
+    public void setProductosComprados(List<Producto> productos) {
+        this.productosComprados = new ArrayList<>(productos);
+    }
+
+    // Método para recibir el callback del historial
+    public void setCallbackAgregarHistorial(Runnable callback) {
+        this.callbackAgregarHistorial = callback;
+    }
 }

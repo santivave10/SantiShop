@@ -5,6 +5,9 @@
 package Controlador;
 
 import Modelo.Usuario;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -22,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -34,9 +38,11 @@ import javafx.util.Duration;
 public class LoginControlador implements Initializable{
 
 
+    private Usuario usuarioCargado;
+    
     @Override
     public void initialize(URL url, ResourceBundle rb){
-    
+        RegisterControlador.listaUsuarios = cargarUsuariosDesdeArchivo();
     }
     
     @FXML
@@ -48,6 +54,7 @@ public class LoginControlador implements Initializable{
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("SantiShop - Registro");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/Vista/Imagenes/LOGO FONDO BLANCO SANTISHOP.png")));
             stage.setResizable(false);
             stage.centerOnScreen();
             stage.show();
@@ -78,6 +85,7 @@ public class LoginControlador implements Initializable{
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("SantiShop - Página Principal");
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/Vista/Imagenes/LOGO FONDO BLANCO SANTISHOP.png")));
             stage.setResizable(false);
             stage.centerOnScreen();
             stage.show();
@@ -187,6 +195,43 @@ public class LoginControlador implements Initializable{
             }
         }
     }
+
+    public static ListaUsuarios cargarUsuariosDesdeArchivo() {
+    ListaUsuarios lista = new ListaUsuarios();
+    File archivo = new File("usuarios.txt");
+    if (!archivo.exists()) return lista;
+    
+    try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+        String linea;
+        while ((linea = reader.readLine()) != null) {
+            String[] datos = linea.split(";");
+            if (datos.length >= 7) { // 7 campos mínimos requeridos
+                Usuario u = new Usuario(
+                    datos[0], // usuario
+                    datos[1], // contraseña
+                    datos[2], // nombres
+                    datos[3], // apellidos
+                    datos[4], // sexo
+                    datos[5], // edad (String)
+                    datos[6]  // país
+                );
+                
+                // Establecer dirección si existe y no está vacía
+                if (datos.length >= 8 && !datos[7].isEmpty()) {
+                    u.setDireccion(datos[7]);
+                }
+                
+                lista.agregarUsuario(u);
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al leer el archivo de usuarios.");
+    }
+    return lista;
+}
+
+
 
 
 

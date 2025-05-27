@@ -4,16 +4,29 @@
  */
 package Controlador;
 
+import Modelo.HistorialCompra;
 import Modelo.Producto;
 import Modelo.Usuario;
 import Modelo.nodo;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +51,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * FXML Controller class
@@ -111,10 +125,12 @@ public class PaginaPrincipalControlador implements Initializable {
     @FXML private Pane panelFavoritos;
     @FXML private Pane panelOpciones;
     @FXML private Pane panelListaDeseos;
+    @FXML private Pane panelHistorialCompra;
     @FXML private Pane opacidad;
     @FXML private VBox contenedorCarrito;
     @FXML private VBox contenedorFavoritos;
     @FXML private VBox contenedorListaDeseos;
+    @FXML private VBox contenedorHistorialCompra;
     @FXML private Label lblCantidadCarrito;
     @FXML private Label lblSubtotal;
     @FXML private Label lblDescuento;
@@ -155,12 +171,14 @@ public class PaginaPrincipalControlador implements Initializable {
     private String sexoOriginal;
     private String edadOriginal;
     private String paisOriginal;
-    private String direccionOriginal;
+    private String direccionOriginal;   
     
     private Usuario usuarioActivo;
     
     
     private ListaProductos listaCarrito = new ListaProductos();
+    // Agregar al inicio de tu clase principal
+    private List<HistorialCompra> historialCompras = new ArrayList<>();
     // Declarar un mapa para rastrear los productos en favoritos
     private Map<String, Boolean> productosEnFavoritos = new HashMap<>();
     private Map<String, ImageView> iconosFavoritos = new HashMap<>();
@@ -346,6 +364,7 @@ public class PaginaPrincipalControlador implements Initializable {
     volverFavoritos();
     volverListaDeseos();
     volverCuenta();
+    volverHistorialCompra();
     }
     
     @FXML
@@ -1373,6 +1392,14 @@ private Producto buscarProductoPorNombre(String nombre) {
         // Obtener el controlador y pasar el total
         PaginaPagosControlador pagosControlador = loader.getController();
         pagosControlador.setTotalPagar(precioFinal);
+        
+        // *** NUEVO: Configurar producto y callback para historial ***
+        pagosControlador.setProductoComprado(producto);
+        pagosControlador.setCallbackAgregarHistorial(() -> {
+            String fechaActual = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            HistorialCompra compra = new HistorialCompra(producto, fechaActual, precioFinal);
+            historialCompras.add(compra);
+        });
 
     } catch (IOException e) {
         e.printStackTrace();
@@ -1425,6 +1452,7 @@ private Producto buscarProductoPorNombre(String nombre) {
 private void comprarCarritoCompleto(ActionEvent event) {
     try {
         double total = 0;
+        List<Producto> productosEnCarrito = new ArrayList<>();
 
         for (Node node : contenedorCarrito.getChildren()) {
             if (node instanceof HBox) {
@@ -1464,11 +1492,23 @@ private void comprarCarritoCompleto(ActionEvent event) {
         // Pasar total y bandera
     pagosControlador.setTotalPagar(total);
     pagosControlador.setEsCompraDesdeCarrito(true);
+    
+    pagosControlador.setProductosComprados(productosEnCarrito);
+    pagosControlador.setCallbackAgregarHistorial(() -> {
+        String fechaActual = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        for (Producto producto : productosEnCarrito) {
+            double precioConDescuento = producto.getPrecio() * (1 - producto.getDescuento());
+            HistorialCompra compra = new HistorialCompra(producto, fechaActual, precioConDescuento);
+            historialCompras.add(compra);
+        }
+    });
 
     // Pasar método para vaciar carrito
     pagosControlador.setCallbackVaciarCarrito(() -> {
     listaCarrito.vaciarCarrito();
     contenedorCarrito.getChildren().clear();
+    actualizarCantidadCarrito();
+    actualizarTotales();
 });
     } catch (IOException e) {
         e.printStackTrace();
@@ -1553,7 +1593,7 @@ private void editarDireccion(MouseEvent e) {
 }
 
     @FXML
-private void guardarCambios(ActionEvent event) {
+    private void guardarCambios(ActionEvent event) {
     // Deshabilitar edición
     txtNombres.setEditable(false);
     txtApellidos.setEditable(false);
@@ -1582,6 +1622,8 @@ private void guardarCambios(ActionEvent event) {
             }
             actual = actual.sig;
         }
+        
+        guardarTodosLosUsuarios();
     }
     // Mostrar mensaje de confirmación
     Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -1626,5 +1668,123 @@ private void cancelarCambios(ActionEvent event) {
     alerta.setContentText("Los cambios han sido cancelados.");
     alerta.show();
 }
+
+private void guardarTodosLosUsuarios() {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt", false))) {
+        nodo<Usuario> actual = Controlador.RegisterControlador.listaUsuarios.cabeza;
+        while (actual != null) {
+            Usuario u = actual.dato;
+            writer.write(u.getUsuario() + ";" +
+                        u.getContrasena() + ";" +
+                        u.getNombres() + ";" +
+                        u.getApellidos() + ";" +
+                        u.getSexo() + ";" +
+                        u.getEdad() + ";" +
+                        u.getPais() + ";" +
+                        (u.getDireccion() != null ? u.getDireccion() : ""));
+            writer.newLine();
+            actual = actual.sig;
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+        System.out.println("Error al guardar los usuarios.");
+    }
+}
+
+    @FXML
+    private void cerrarSesion(MouseEvent event){
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setTitle("Cierre de sesión exitoso");
+        alerta.setHeaderText(null);
+        alerta.setContentText("¡Gracias por comprar con nosotros, te esperamos nuevamente!");
+        alerta.show();
+        // Pausa de 2 segundos antes de abrir página principal
+        PauseTransition pausa = new PauseTransition(Duration.seconds(2));
+        pausa.setOnFinished(e -> {
+            try {
+                alerta.close(); // Cerramos la alerta
+                
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/Login.fxml"));
+                Parent root = loader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setTitle("SantiShop - Inicio de sesión");
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/Vista/Imagenes/LOGO FONDO BLANCO SANTISHOP.png")));
+                stage.setResizable(false);
+                stage.centerOnScreen();
+                stage.show();
+                
+                ((Stage)(((Label)event.getSource()).getScene().getWindow())).close();
+            } catch (IOException ex) {
+                Logger.getLogger(PaginaPrincipalControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        });
+        pausa.play();
+    }
+    
+     @FXML
+    private void mostrarHistorialCompra(MouseEvent event) {
+        panelOpciones.setVisible(false);
+        panelOpciones.setManaged(false); 
+        panelHistorialCompra.setVisible(true);
+        panelHistorialCompra.setManaged(true); 
+        opacidad.setVisible(true);
+        opacidad.setManaged(true);
+        opacidad.setOpacity(0.5);
+        mostrarHistorialCompleto();
+    }
+    
+    @FXML
+    private void volverHistorialCompra(){
+        panelHistorialCompra.setVisible(false);
+        panelHistorialCompra.setManaged(false);
+        opacidad.setVisible(false);
+        opacidad.setManaged(false);
+    }
+    
+    private void agregarProductoAHistorial(HistorialCompra historialCompra) {
+    // Crear el contenedor del producto
+    HBox contenedor = new HBox(10);
+    contenedor.setAlignment(Pos.CENTER_LEFT);
+    contenedor.setPadding(new Insets(10));
+    contenedor.setStyle("-fx-background-color: white; -fx-border-color: lightgray;");
+    contenedor.setPrefWidth(400);
+    
+    // Imagen del producto
+    ImageView imagen = new ImageView(new Image(getClass().getResourceAsStream("/Vista/Imagenes/Productos/" + historialCompra.getProducto().getImagenUrl())));
+    imagen.setFitWidth(50);
+    imagen.setFitHeight(50);
+    
+    // Información del producto
+    VBox infoProducto = new VBox(5);
+    infoProducto.setPrefWidth(300);
+    
+    Label lblNombre = new Label(historialCompra.getProducto().getNombre());
+    lblNombre.setStyle("-fx-font-weight: bold;");
+    lblNombre.setWrapText(true);
+    
+    Label lblPrecioCompra = new Label("$" + String.format("%,.0f", historialCompra.getPrecioCompra()));
+    lblPrecioCompra.setStyle("-fx-font-weight: bold; -fx-text-fill: #2E8B57;");
+    
+    Label lblFecha = new Label(historialCompra.getFechaCompra());
+    lblFecha.setStyle("-fx-font-size: 12px; -fx-text-fill: #666666;");
+    
+    infoProducto.getChildren().addAll(lblNombre, lblPrecioCompra, lblFecha);
+    
+    // Agregar elementos al contenedor
+    contenedor.getChildren().addAll(imagen, infoProducto);
+    
+    // Agregar al contenedor del historial (asumiendo que tienes un contenedorHistorial)
+    contenedorHistorialCompra.getChildren().add(contenedor);
+}
+
+    private void mostrarHistorialCompleto() {
+    contenedorHistorialCompra.getChildren().clear();
+    for (HistorialCompra compra : historialCompras) {
+        agregarProductoAHistorial(compra);
+    }
+}
+  
 
 }
