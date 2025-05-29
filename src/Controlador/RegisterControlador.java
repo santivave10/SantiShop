@@ -33,6 +33,7 @@ import javafx.util.Duration;
  */
 public class RegisterControlador implements Initializable{
     
+    //declaramos las variables a usar
     public static ListaUsuarios listaUsuarios = new ListaUsuarios();
     @FXML
     private TextField txtUsuario;

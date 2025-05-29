@@ -19,7 +19,6 @@ public class HistorialCompra {
         this.precioCompra = precioCompra;
     }
     
-    // Getters
     public Producto getProducto() { return producto; }
     public String getFechaCompra() { return fechaCompra; }
     public double getPrecioCompra() { return precioCompra; }

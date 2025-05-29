@@ -37,8 +37,7 @@ import javafx.util.Duration;
  */
 public class LoginControlador implements Initializable{
 
-
-          
+    //declaramos las variables a usar
     @FXML
     private TextField txtUsuario;
     @FXML

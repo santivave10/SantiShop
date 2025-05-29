@@ -26,12 +26,14 @@ public class Principal extends Application{
     public void start(Stage primaryStage){
         Parent root = null;
         
+        //Mostramos el archivo Login.FXML
          try { 
                 root = FXMLLoader.load(getClass().getResource("Login.fxml"));
          } catch (IOException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
          }
         
+         //le aplicamos atributos
         Scene escena = new Scene(root);
         primaryStage.setScene(escena);
         primaryStage.setTitle("SantiShop - Inicio de sesión");
@@ -40,7 +42,6 @@ public class Principal extends Application{
         primaryStage.show();
     }
     public static void main(String[] args) {
-        // TODO code application logic here
         launch(args);
     }
 }

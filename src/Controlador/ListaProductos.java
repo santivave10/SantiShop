@@ -15,9 +15,12 @@ import java.util.List;
  */
 public class ListaProductos {
     
+    //declaramos la cabecera del nodo
     private NodoDoble<Producto> cab;
+    //declaramos la cola del nodo
     private NodoDoble<Producto> cola;
 
+    //inicializamos ambas variables como nulas
     public ListaProductos() {
         cab = null;
         cola = null;

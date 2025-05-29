@@ -13,8 +13,10 @@ import Modelo.nodo;
  */
 public class ListaUsuarios {
     
+    //creamos la cabecera del nodo
     public nodo <Usuario> cabeza;
     
+    //la inicializamos como nula
      public ListaUsuarios(){
         cabeza=null;
     }
@@ -79,5 +81,4 @@ public class ListaUsuarios {
             actual = actual.sig;
         }
     }
-   
 }

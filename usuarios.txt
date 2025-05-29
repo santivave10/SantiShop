@@ -1,3 +1,0 @@
-santiago;123;santi;vasquez;Masculino;18;col;manzana
-laura;123;laura;vega;Femenino;18;col;monteria
-santi;321;jjj;ggg;Masculino;78;sel;col
