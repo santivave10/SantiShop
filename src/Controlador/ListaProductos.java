@@ -14,6 +14,7 @@ import java.util.List;
  * @author santi
  */
 public class ListaProductos {
+    
     private NodoDoble<Producto> cab;
     private NodoDoble<Producto> cola;
 
@@ -22,6 +23,8 @@ public class ListaProductos {
         cola = null;
     }
 
+    
+    //metodo para agregar un producto al nodo
     public void agregarProducto(Producto p) {
         NodoDoble nuevo = new NodoDoble(p);
         if (cab == null) {
@@ -33,14 +36,18 @@ public class ListaProductos {
         }
     }
 
+    //metodo para obtener el primer elemento del nodo
     public NodoDoble getCabeza() {
         return cab;
     }
 
+    //metodo para ver si el nodo está vacio
     public boolean estaVacia() {
         return cab == null;
     }
     
+    
+    //metodo para buscar un producto por su nombre
     public Producto buscarPorNombre(String nombre) {
     NodoDoble<Producto> actual = cab;
     while (actual != null) {
@@ -51,6 +58,8 @@ public class ListaProductos {
     }
     return null;
 }
+    
+    //metodo para vaciar el carrito de compra
     public void vaciarCarrito() {
         // Liberar referencias para permitir la recolección de basura
         NodoDoble<Producto> actual = cab;
@@ -66,17 +75,16 @@ public class ListaProductos {
         cola = null;
     }
     
-public List<Producto> getProductos() {
-    List<Producto> lista = new ArrayList<>();
-    NodoDoble<Producto> actual = cab;
+    //metodo para obtener los productos que están en la lista
+    public List<Producto> getProductos() {
+        List<Producto> lista = new ArrayList<>();
+        NodoDoble<Producto> actual = cab;
 
-    while (actual != null) {
-        lista.add(actual.dato);
-        actual = actual.sig;
+        while (actual != null) {
+            lista.add(actual.dato);
+            actual = actual.sig;
+        }
+
+        return lista;
     }
-
-    return lista;
-}
-
-
 }

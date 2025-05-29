@@ -32,10 +32,8 @@ import javafx.util.Duration;
  * @author santi                                                                
  */
 public class RegisterControlador implements Initializable{
-
     
     public static ListaUsuarios listaUsuarios = new ListaUsuarios();
-    
     @FXML
     private TextField txtUsuario;
     @FXML
@@ -98,7 +96,7 @@ public class RegisterControlador implements Initializable{
         String contrasena = txtContrasena.getText();
         String nombres = txtNombres.getText();
         String apellidos = txtApellidos.getText();
-        String sexo = comboSexo.getValue(); // ComboBox usa .getValue()
+        String sexo = comboSexo.getValue(); 
         String edad = txtEdad.getText();
         String pais = txtPais.getText();
         
@@ -157,7 +155,7 @@ public class RegisterControlador implements Initializable{
                 alerta.setContentText("Usuario registrado exitosamente.\nCargando login...");
                 alerta.show();
 
-                //Damos una pausa para volver al login luego de registrar un usuario
+                //una pequeña pausa luego de crear el usuario para volver al login
                 PauseTransition pausa = new PauseTransition(Duration.seconds(3));
                 pausa.setOnFinished(event -> {
                 alerta.close();
@@ -168,22 +166,22 @@ public class RegisterControlador implements Initializable{
         }
     }
     
+    //metodo para guardar el usuario en un archivo txt
     private void guardarUsuarioEnArchivo(Usuario usuario) {
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt", true))) {
-        // Guardar datos separados por punto y coma
-        writer.write(usuario.getUsuario() + ";" +
-                     usuario.getContrasena() + ";" +
-                     usuario.getNombres() + ";" +
-                     usuario.getApellidos() + ";" +
-                     usuario.getSexo() + ";" +
-                     usuario.getEdad() + ";" +
-                     usuario.getPais() + ";" +
-                     (usuario.getDireccion() != null ? usuario.getDireccion() : ""));
-        writer.newLine();
-    } catch (IOException e) {
-        e.printStackTrace();
-        System.out.println("Error al guardar el usuario.");
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("usuarios.txt", true))) {
+            // Guardar datos separados por punto y coma
+            writer.write(usuario.getUsuario() + ";" +
+                         usuario.getContrasena() + ";" +
+                         usuario.getNombres() + ";" +
+                         usuario.getApellidos() + ";" +
+                         usuario.getSexo() + ";" +
+                         usuario.getEdad() + ";" +
+                         usuario.getPais() + ";" +
+                         (usuario.getDireccion() != null ? usuario.getDireccion() : ""));
+            writer.newLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al guardar el usuario.");
+        }
     }
-}
-
 }

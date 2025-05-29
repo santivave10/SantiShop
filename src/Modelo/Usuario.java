@@ -39,11 +39,11 @@ public class Usuario {
     public String getPais() { return Pais; }
     public String getDireccion() { return Direccion; }
 
-    public void setContraseña(String nuevaContrasena) {
-        this.Contrasena = nuevaContrasena;
-    }
     public void setUsuario(String Usuario) {
         this.Usuario = Usuario;
+    }
+    public void setContrasena(String nuevaContrasena) {
+        this.Contrasena = nuevaContrasena;
     }
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
@@ -62,7 +62,6 @@ public class Usuario {
     }
     public void setDireccion(String Direccion) {
         this.Direccion = Direccion;
-    }
-   
+    } 
 }
 

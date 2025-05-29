@@ -19,6 +19,7 @@ public class ListaUsuarios {
         cabeza=null;
     }
      
+    //metodo para ver si la lista es vacia
     public boolean ListaEsVacia(){
         return cabeza ==null?true:false;
     }
@@ -38,7 +39,7 @@ public class ListaUsuarios {
         }
     }
     
-      //Método para buscar un usuario por usuario y contraseña
+    //Método para buscar un usuario por usuario y contraseña
     public Usuario buscarUsuario(String usuario, String contrasena) {
         nodo<Usuario> actual = cabeza;
         
@@ -66,12 +67,13 @@ public class ListaUsuarios {
         return false;
     }
      
+    //metodo para actualizar la contraseña del usuario
     public void actualizarContrasena(String usuario, String nuevaContrasena) {
         nodo<Usuario> actual = cabeza;
 
         while (actual != null) {
             if (actual.dato.getUsuario().equalsIgnoreCase(usuario)) {
-                actual.dato.setContraseña(nuevaContrasena);
+                actual.dato.setContrasena(nuevaContrasena);
                 break;
             }
             actual = actual.sig;

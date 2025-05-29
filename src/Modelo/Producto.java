@@ -22,11 +22,9 @@ public class Producto {
         this.marca = marca;
         this.imagenUrl = imagenUrl;
     }
-
     public String getNombre() { return nombre; }
     public double getPrecio() { return precio; }
     public double getDescuento() { return descuento; }
     public String getMarca() { return marca; }
     public String getImagenUrl() { return imagenUrl; }
-
 }

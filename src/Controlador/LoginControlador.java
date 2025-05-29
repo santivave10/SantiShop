@@ -38,6 +38,12 @@ import javafx.util.Duration;
 public class LoginControlador implements Initializable{
 
 
+          
+    @FXML
+    private TextField txtUsuario;
+    @FXML
+    private PasswordField txtContrasena;
+    
     private Usuario usuarioCargado;
     
     @Override
@@ -45,6 +51,7 @@ public class LoginControlador implements Initializable{
         RegisterControlador.listaUsuarios = cargarUsuariosDesdeArchivo();
     }
     
+    //metodo para abrir el registro mediante un label
     @FXML
     private void openRegister(MouseEvent event){
         try{
@@ -65,12 +72,8 @@ public class LoginControlador implements Initializable{
             e.printStackTrace();
         }
     }
-      
-    @FXML
-    private TextField txtUsuario;
-    @FXML
-    private PasswordField txtContrasena;
     
+    //metodo para abrir la pagina principal en un boton siempre y cuando exista el usuario
     private void abrirPaginaPrincipal(ActionEvent event, Usuario usuarioEncontrado) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/Vista/paginaPrincipal.fxml"));
@@ -81,6 +84,9 @@ public class LoginControlador implements Initializable{
          
             // Pasar el usuario al controlador de la página principal
             controladorPagina.setUsuarioActivo(usuarioEncontrado);
+            
+            // 🔽 🔽 CARGA EL HISTORIAL DEL ARCHIVO (DESPUÉS DE ASIGNAR EL USUARIO)
+            controladorPagina.cargarHistorialDesdeArchivo(usuarioEncontrado.getUsuario());
             
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -97,6 +103,7 @@ public class LoginControlador implements Initializable{
         }
     }
 
+    //metodo para iniciar sesión
     @FXML
     private void iniciarSesion(ActionEvent event) {
         String usuarioIngresado = txtUsuario.getText();
@@ -138,16 +145,17 @@ public class LoginControlador implements Initializable{
             alerta.setContentText("¡Bienvenido a SantiShop, " + usuarioEncontrado.getNombres() + "!");
             alerta.show();
 
-            // Pausa de 2 segundos antes de abrir página principal
+            // Pausa de 2 segundos antes de abrir el form de página principal
             PauseTransition pausa = new PauseTransition(Duration.seconds(2));
             pausa.setOnFinished(e -> {
-            alerta.close(); // Cerramos la alerta
+            alerta.close();
             abrirPaginaPrincipal(event, usuarioEncontrado); // Llamamos método que abre la página principal
             });
             pausa.play();
         }
     }
     
+    //metodo para cambiar la contraseña si se olvidó
     @FXML
     private void olvidarContrasena() {
         // Solicitar nombre de usuario
@@ -196,43 +204,39 @@ public class LoginControlador implements Initializable{
         }
     }
 
+    //metodo para cargar un usuario desde el archivo txt
     public static ListaUsuarios cargarUsuariosDesdeArchivo() {
-    ListaUsuarios lista = new ListaUsuarios();
-    File archivo = new File("usuarios.txt");
-    if (!archivo.exists()) return lista;
-    
-    try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
-        String linea;
-        while ((linea = reader.readLine()) != null) {
-            String[] datos = linea.split(";");
-            if (datos.length >= 7) { // 7 campos mínimos requeridos
-                Usuario u = new Usuario(
-                    datos[0], // usuario
-                    datos[1], // contraseña
-                    datos[2], // nombres
-                    datos[3], // apellidos
-                    datos[4], // sexo
-                    datos[5], // edad (String)
-                    datos[6]  // país
-                );
-                
-                // Establecer dirección si existe y no está vacía
-                if (datos.length >= 8 && !datos[7].isEmpty()) {
-                    u.setDireccion(datos[7]);
+        ListaUsuarios lista = new ListaUsuarios();
+        File archivo = new File("usuarios.txt");
+        if (!archivo.exists()) return lista;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] datos = linea.split(";");
+                if (datos.length >= 7) { // 7 campos mínimos requeridos
+                    Usuario u = new Usuario(
+                        datos[0], // usuario
+                        datos[1], // contraseña
+                        datos[2], // nombres
+                        datos[3], // apellidos
+                        datos[4], // sexo
+                        datos[5], // edad (String)
+                        datos[6]  // país
+                    );
+
+                    // Establecer dirección si existe y no está vacía
+                    if (datos.length >= 8 && !datos[7].isEmpty()) {
+                        u.setDireccion(datos[7]);
+                    }
+
+                    lista.agregarUsuario(u);
                 }
-                
-                lista.agregarUsuario(u);
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Error al leer el archivo de usuarios.");
         }
-    } catch (IOException e) {
-        e.printStackTrace();
-        System.out.println("Error al leer el archivo de usuarios.");
+        return lista;
     }
-    return lista;
-}
-
-
-
-
-
 }
